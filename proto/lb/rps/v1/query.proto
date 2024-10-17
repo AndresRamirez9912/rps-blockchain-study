@@ -3,31 +3,47 @@ package lb.rps.v1;
 
 option go_package = "github.com/0xlb/rps-chain/x/rps/types"; // store the generated files here
 
-import "google/api/annotations.proto"; 
+import "google/api/annotations.proto";
 import "cosmos/query/v1/query.proto";
-import "lb/rps/v1/rps.prot";
+import "lb/rps/v1/types.proto";
 
+// Query service defines the gRPC service for querying game-related information
+// and configuration parameters in the Rock, Paper & Scissors module.
 service Query {
- rpc GetGame(QueryGetGameRequest) returns (QueryGetGameResponse);
- option (cosmos.query.v1.module_query_safe) = true; // Enable REST API for this RPC
- option (google.api.http).get = "/rps/v1/game{index}"; // Endpoint and Method for the REST API 
- 
- rpc GetParams(QueryGetParams) returns (QueryGetParamsResponse);
- option (cosmos.query.v1.module_query_safe) = true; // Enable REST API for this RPC
- option (google.api.http).get = "/rps/v1/params"; // Endpoint and Method for the REST API
-  
+  // GetGame retrieves the details of a specific game based on the given index.
+  rpc GetGame(QueryGetGameRequest) returns (QueryGetGameResponse) {
+    option (cosmos.query.v1.module_query_safe) =
+        true; // Habilita la API REST para este método
+    option (google.api.http).get =
+        "/rps/v1/game/{index}"; // Define el endpoint y el método REST
+  }
+
+  // GetParams retrieves the current configuration parameters for the module.
+  rpc GetParams(QueryGetParams) returns (QueryGetParamsResponse) {
+    option (cosmos.query.v1.module_query_safe) =
+        true; // Habilita la API REST para este método
+    option (google.api.http).get =
+        "/rps/v1/params"; // Define el endpoint y el método REST
+  }
 }
 
+// QueryGetGameRequest is the request type for the GetGame RPC, containing the
+// game index.
 message QueryGetGameRequest {
-    uint64 index =1;   
+  uint64 index = 1; // The unique identifier of the game to retrieve.
 }
 
+// QueryGetGameResponse is the response type for the GetGame RPC, containing the
+// game details.
 message QueryGetGameResponse {
-    Game game =1;
+  Game game = 1; // The game details retrieved from the query.
 }
 
-message QueryGetParams{}
+// QueryGetParams is the request type for the GetParams RPC.
+message QueryGetParams {}
 
-message QueryGetParamsResponse{
-    Params param =1;
+// QueryGetParamsResponse is the response type for the GetParams RPC, containing
+// the module parameters.
+message QueryGetParamsResponse {
+  Params param = 1; // The current configuration parameters of the module.
 }

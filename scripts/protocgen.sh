@@ -23,5 +23,5 @@ cd ..
 
 cp -r github.com/0xlb/rps-chain/* ./
 rm -rf api && mkdir api
-mv 0xlb/rps-chain/* ./api
-rm -rf github.com alice
+mv lb/* ./api
+rm -rf github.com lb

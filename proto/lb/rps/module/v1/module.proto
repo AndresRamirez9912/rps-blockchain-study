@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package lb.rps.module.v1;
 
-option go_package = "github.com/0xlb/rps-chain";
-
 import "cosmos/app/v1alpha1/module.proto";
 
 // Module is the app config object of the module rps.
