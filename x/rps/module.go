@@ -1,11 +1,11 @@
-package module
+package rps
 
 import (
 	"encoding/json"
 	"fmt"
 
 	"cosmossdk.io/core/appmodule"
-	"github.com/0xlb/rps-chain/x/rps/keeper"
+	rpsKeeper "github.com/0xlb/rps-chain/x/rps/keeper"
 	"github.com/0xlb/rps-chain/x/rps/types"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -17,21 +17,21 @@ import (
 )
 
 var (
-	_ module.AppModuleBasic = AppModule{}
-	_ module.HasGenesis     = AppModule{}
-	_ appmodule.AppModule   = AppModule{}
+	_ module.AppModuleBasic = AppModule{} // Module Name and codification settings
+	_ module.HasGenesis     = AppModule{} // Handlers for the genesis handle (export and initial state)
+	_ appmodule.AppModule   = AppModule{} // Register services*, genesis handle and how to interact with consensours mecanism
 )
 
 // ConsensusVersion defines the current module consensus version.
 const ConsensusVersion = 1
 
 type AppModule struct {
-	cdc    codec.Codec
-	keeper keeper.Keeper
+	cdc    codec.Codec      // Responsible to handle the codification and decodification
+	keeper rpsKeeper.Keeper // Responsible for keeper handle (keepes handle state and module's logic)
 }
 
 // NewAppModule creates a new AppModule object
-func NewAppModule(cdc codec.Codec, keeper keeper.Keeper) AppModule {
+func NewAppModule(cdc codec.Codec, keeper rpsKeeper.Keeper) AppModule {
 	return AppModule{
 		cdc:    cdc,
 		keeper: keeper,

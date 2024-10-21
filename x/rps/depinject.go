@@ -1,4 +1,4 @@
-package module
+package rps
 
 import (
 	"cosmossdk.io/core/address"
@@ -7,7 +7,7 @@ import (
 	"cosmossdk.io/depinject"
 
 	modulev1 "github.com/0xlb/rps-chain/api/rps/module/v1"
-	"github.com/0xlb/rps-chain/x/rps/keeper"
+	rpsKeeper "github.com/0xlb/rps-chain/x/rps/keeper"
 	"github.com/cosmos/cosmos-sdk/codec"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 )
@@ -41,7 +41,7 @@ type ModuleOutputs struct {
 	depinject.Out
 
 	Module appmodule.AppModule
-	Keeper keeper.Keeper
+	Keeper rpsKeeper.Keeper
 }
 
 func ProvideModule(in ModuleInputs) ModuleOutputs {
@@ -51,7 +51,7 @@ func ProvideModule(in ModuleInputs) ModuleOutputs {
 		authority = authtypes.NewModuleAddressOrBech32Address(in.Config.Authority)
 	}
 
-	k := keeper.NewKeeper(in.Cdc, in.AddressCodec, in.StoreService, authority.String())
+	k := rpsKeeper.NewKeeper(in.Cdc, in.AddressCodec, in.StoreService, authority.String())
 	m := NewAppModule(in.Cdc, k)
 
 	return ModuleOutputs{Module: m, Keeper: k}

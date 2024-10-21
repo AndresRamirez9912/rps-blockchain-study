@@ -1,4 +1,4 @@
-package module
+package rps
 
 import (
 	autocliv1 "cosmossdk.io/api/cosmos/autocli/v1"
