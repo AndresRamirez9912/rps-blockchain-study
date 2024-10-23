@@ -118,6 +118,13 @@ func (g Game) Validate() error {
 	return nil
 }
 
+func (g Game) Ended() bool {
+	return g.Status == rules.StatusDraw ||
+		g.Status == rules.StatusPlayerAWins ||
+		g.Status == rules.StatusPlayerBWins ||
+		g.Status == rules.StatusCancelled
+}
+
 func getPlayerAddress(address string) (sdk.AccAddress, error) {
 	// Validate the address has our prefix (it means the wallet is from out blockchain)
 	addr, err := sdk.AccAddressFromBech32(address)

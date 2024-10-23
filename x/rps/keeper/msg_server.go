@@ -7,6 +7,7 @@ import (
 
 	"github.com/0xlb/rps-chain/x/rps/rules"
 	"github.com/0xlb/rps-chain/x/rps/types"
+	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 type msgServer struct {
@@ -42,6 +43,15 @@ func (ms msgServer) CreateGame(ctx context.Context, msg *types.MsgCreateGame) (*
 	if err != nil {
 		return nil, err
 	}
+
+	// *************** EMIT EVENT ************
+	sdkCtx := sdk.UnwrapSDKContext(ctx)
+	sdkCtx.EventManager().EmitTypedEvent(&types.EventCreateGame{
+		GameNumber: newGame.GameNumber,
+		PlayerA:    newGame.PlayerA,
+		PlayerB:    newGame.PlayerB,
+	})
+	// ***************************************
 
 	return &types.MsgCreateGameResponse{}, nil // Return the response as the interface needs (and proto file specify)
 }
@@ -116,6 +126,22 @@ func (ms msgServer) MakeMove(ctx context.Context, msg *types.MsgMakeMove) (*type
 	err = ms.k.Games.Set(ctx, game.GameNumber, game)
 	if err != nil {
 		return nil, err
+	}
+	// ***************************************
+
+	// *************** EMIT EVENT ************
+	sdkCtx := sdk.UnwrapSDKContext(ctx)
+	sdkCtx.EventManager().EmitTypedEvent(&types.EventMakeMove{
+		GameNumber: game.GameNumber,
+		Player:     msg.Player,
+		Move:       msg.Move,
+	})
+
+	if game.Ended() {
+		sdkCtx.EventManager().EmitTypedEvent(&types.EventEndGame{
+			GameNumber: game.GameNumber,
+			Status:     game.Status,
+		})
 	}
 	// ***************************************
 
