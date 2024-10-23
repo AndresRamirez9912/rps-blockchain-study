@@ -2,6 +2,8 @@ package rpsKeeper
 
 import (
 	"context"
+	"fmt"
+	"strings"
 
 	"github.com/0xlb/rps-chain/x/rps/rules"
 	"github.com/0xlb/rps-chain/x/rps/types"
@@ -120,6 +122,33 @@ func (ms msgServer) MakeMove(ctx context.Context, msg *types.MsgMakeMove) (*type
 	return &types.MsgMakeMoveResponse{}, nil
 }
 
-func (ms msgServer) UpdateParams(ctx context.Context, params *types.MsgUpdateParams) (*types.MsgUpdateParamsResponse, error) {
-	return nil, nil
+func (ms msgServer) UpdateParams(ctx context.Context, msg *types.MsgUpdateParams) (*types.MsgUpdateParamsResponse, error) {
+	// *************** VALIDATION ************
+	// Validate exists Authority
+	_, err := ms.k.addressCodec.StringToBytes(msg.Authority)
+	if err != nil {
+		return nil, err
+	}
+
+	// Validate the correct Authority
+	authority := ms.k.GetAuthority()
+	if !strings.EqualFold(msg.Authority, authority) {
+		return nil, fmt.Errorf("unauthorized, got: %s, want %s", msg.Authority, ms.k.GetAuthority())
+	}
+
+	// Validate mesage's params
+	err = msg.Params.Validate()
+	if err != nil {
+		return nil, err
+	}
+	// ***************************************
+
+	// ************ UPDATE PARAMS ************
+	err = ms.k.Params.Set(ctx, msg.Params)
+	if err != nil {
+		return nil, err
+	}
+
+	return &types.MsgUpdateParamsResponse{}, nil
+	// ***************************************
 }
