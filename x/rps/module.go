@@ -84,11 +84,12 @@ func (AppModule) DefaultGenesis(cdc codec.JSONCodec) json.RawMessage {
 // ValidateGenesis performs genesis state validation for the circuit module.
 func (AppModule) ValidateGenesis(cdc codec.JSONCodec, _ client.TxEncodingConfig, bz json.RawMessage) error {
 	var data types.GenesisState
-	if err := cdc.UnmarshalJSON(bz, &data); err != nil {
+	err := cdc.UnmarshalJSON(bz, &data) // Unmarshal state data
+	if err != nil {
 		return fmt.Errorf("failed to unmarshal %s genesis state: %w", types.ModuleName, err)
 	}
 
-	return data.Validate()
+	return data.Validate() // Validate state data
 }
 
 // InitGenesis performs genesis initialization for the checkers module.

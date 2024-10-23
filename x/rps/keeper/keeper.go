@@ -1,6 +1,7 @@
 package rpsKeeper
 
 import (
+	"context"
 	"fmt"
 
 	"cosmossdk.io/collections"
@@ -19,25 +20,31 @@ type Keeper struct {
 	authority string
 
 	// state management
-	Schema collections.Schema
-	Params collections.Item[types.Params]
+	Schema     collections.Schema
+	Params     collections.Item[types.Params]
+	GameNumber collections.Sequence                // Counter the games
+	Games      collections.Map[uint64, types.Game] // Map [GameId] => Game
 }
 
 // NewKeeper creates a new Keeper instance
 func NewKeeper(cdc codec.BinaryCodec, addressCodec address.Codec, storeService storetypes.KVStoreService, authority string) Keeper {
-	if _, err := addressCodec.StringToBytes(authority); err != nil {
+	// Decode authority and check
+	_, err := addressCodec.StringToBytes(authority)
+	if err != nil {
 		panic(fmt.Errorf("invalid authority address: %w", err))
 	}
 
-	sb := collections.NewSchemaBuilder(storeService)
+	sb := collections.NewSchemaBuilder(storeService) // instance used to define the keeper
 	k := Keeper{
 		cdc:          cdc,
 		addressCodec: addressCodec,
 		authority:    authority,
 		Params:       collections.NewItem(sb, types.ParamsKey, "params", codec.CollValue[types.Params](cdc)),
+		GameNumber:   collections.NewSequence(sb, types.GameNumberKey, "game_number"),
+		Games:        collections.NewMap(sb, types.GamesKey, "games", collections.Uint64Key, codec.CollValue[types.Game](cdc)),
 	}
 
-	schema, err := sb.Build()
+	schema, err := sb.Build() // Build the whole squema
 	if err != nil {
 		panic(err)
 	}
@@ -50,4 +57,13 @@ func NewKeeper(cdc codec.BinaryCodec, addressCodec address.Codec, storeService s
 // GetAuthority returns the module's authority.
 func (k Keeper) GetAuthority() string {
 	return k.authority
+}
+
+// NextGameNumber returns and increments the global game number counter
+func (k Keeper) NextGameNumber(ctx context.Context) uint64 {
+	gameNumber, err := k.GameNumber.Next(ctx)
+	if err != nil {
+		panic(err)
+	}
+	return gameNumber + 1 // Sequence starts from zero
 }
