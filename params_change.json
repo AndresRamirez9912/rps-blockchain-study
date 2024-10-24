@@ -1,0 +1,12 @@
+{
+  "title": "Parameter change: increase unbonding time to 2 days",
+  "description": "Change to 2 days",
+  "changes": [
+    {
+      "subspace": "staking",
+      "key": "UnbondingTime",
+      "value": "172800000000000"
+    }
+  ],
+  "deposit": "1000000rps"
+}
