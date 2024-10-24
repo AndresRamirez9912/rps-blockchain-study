@@ -3,7 +3,7 @@ COMMIT := $(shell git log -1 --format='%H')
 DOCKER := $(shell which docker)
 
 # don't override user values
-VERSION ?= $(shell git describe --exact-match 2>/dev/null)
+VERSION ?= $(shell git describe --tags --always)
 # if VERSION is empty, then populate it with branch's name and raw commit hash
 ifeq (,$(VERSION))
   VERSION := $(BRANCH)-$(COMMIT)
