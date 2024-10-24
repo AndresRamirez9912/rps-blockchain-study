@@ -12,6 +12,7 @@ func RegisterInterfaces(registry types.InterfaceRegistry) {
 		&MsgUpdateParams{}, // Register my MsgUpdateParams struct
 		&MsgCreateGame{},   // Register my MsgCreateGame struct
 		&MsgMakeMove{},     // Register my MsgMakeMove struct
+		&MsgReviewMove{},   // Register my MsgReviewMove struct
 	)
 	msgservice.RegisterMsgServiceDesc(registry, &_Msg_serviceDesc)
 }

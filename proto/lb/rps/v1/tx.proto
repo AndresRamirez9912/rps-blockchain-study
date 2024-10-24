@@ -16,6 +16,8 @@ service Msg {
   rpc CreateGame(MsgCreateGame) returns (MsgCreateGameResponse);
   // MakeMove submit a move to the specific game
   rpc MakeMove(MsgMakeMove) returns (MsgMakeMoveResponse);
+  // ReviewMove
+  rpc ReviewMove(MsgReviewMove) returns (MsgReviewMoveResponse);
   // UpdateParams updates params of the rps module
   rpc UpdateParams(MsgUpdateParams) returns (MsgUpdateParamsResponse);
 }
@@ -45,6 +47,21 @@ message MsgMakeMove {
 
 // MsgMakeMove defines the MsgMakeMove response type
 message MsgMakeMoveResponse {}
+
+// MsgReviewMove define the MsgReviewMove request type
+message MsgReviewMove {
+  option (cosmos.msg.v1.signer) =
+      "player"; // Define who is the signer in the request
+
+  // Player is the message sender
+  string player = 1;
+  uint64 game_index = 2;
+  string revealed_move = 3;
+  string salt = 4;
+}
+
+// MsgReviewMoveResponse define the MsgReviewMoveResponse response type
+message MsgReviewMoveResponse {}
 
 // MsgUpdateParams defines the Msg/Update params request type
 message MsgUpdateParams {

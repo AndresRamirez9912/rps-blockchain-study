@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	Msg_CreateGame_FullMethodName   = "/lb.rps.v1.Msg/CreateGame"
 	Msg_MakeMove_FullMethodName     = "/lb.rps.v1.Msg/MakeMove"
+	Msg_ReviewMove_FullMethodName   = "/lb.rps.v1.Msg/ReviewMove"
 	Msg_UpdateParams_FullMethodName = "/lb.rps.v1.Msg/UpdateParams"
 )
 
@@ -34,6 +35,8 @@ type MsgClient interface {
 	CreateGame(ctx context.Context, in *MsgCreateGame, opts ...grpc.CallOption) (*MsgCreateGameResponse, error)
 	// MakeMove submit a move to the specific game
 	MakeMove(ctx context.Context, in *MsgMakeMove, opts ...grpc.CallOption) (*MsgMakeMoveResponse, error)
+	// ReviewMove
+	ReviewMove(ctx context.Context, in *MsgReviewMove, opts ...grpc.CallOption) (*MsgReviewMoveResponse, error)
 	// UpdateParams updates params of the rps module
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
 }
@@ -66,6 +69,16 @@ func (c *msgClient) MakeMove(ctx context.Context, in *MsgMakeMove, opts ...grpc.
 	return out, nil
 }
 
+func (c *msgClient) ReviewMove(ctx context.Context, in *MsgReviewMove, opts ...grpc.CallOption) (*MsgReviewMoveResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MsgReviewMoveResponse)
+	err := c.cc.Invoke(ctx, Msg_ReviewMove_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(MsgUpdateParamsResponse)
@@ -86,6 +99,8 @@ type MsgServer interface {
 	CreateGame(context.Context, *MsgCreateGame) (*MsgCreateGameResponse, error)
 	// MakeMove submit a move to the specific game
 	MakeMove(context.Context, *MsgMakeMove) (*MsgMakeMoveResponse, error)
+	// ReviewMove
+	ReviewMove(context.Context, *MsgReviewMove) (*MsgReviewMoveResponse, error)
 	// UpdateParams updates params of the rps module
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
 	mustEmbedUnimplementedMsgServer()
@@ -103,6 +118,9 @@ func (UnimplementedMsgServer) CreateGame(context.Context, *MsgCreateGame) (*MsgC
 }
 func (UnimplementedMsgServer) MakeMove(context.Context, *MsgMakeMove) (*MsgMakeMoveResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MakeMove not implemented")
+}
+func (UnimplementedMsgServer) ReviewMove(context.Context, *MsgReviewMove) (*MsgReviewMoveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReviewMove not implemented")
 }
 func (UnimplementedMsgServer) UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
@@ -164,6 +182,24 @@ func _Msg_MakeMove_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_ReviewMove_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgReviewMove)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).ReviewMove(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_ReviewMove_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).ReviewMove(ctx, req.(*MsgReviewMove))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MsgUpdateParams)
 	if err := dec(in); err != nil {
@@ -196,6 +232,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MakeMove",
 			Handler:    _Msg_MakeMove_Handler,
+		},
+		{
+			MethodName: "ReviewMove",
+			Handler:    _Msg_ReviewMove_Handler,
 		},
 		{
 			MethodName: "UpdateParams",

@@ -23,12 +23,23 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 				{
 					RpcMethod: "MakeMove",
-					Use:       "make [movement]", // This is the command I want
+					Use:       "make [game_index] [movement]", // This is the command I want
 					Short:     "Make a Rock, Paper, Scissors movement",
 					Long:      "Make a Rock, Paper, Scissors movement. Valid move options are 'Rock' - 'Paper' - 'Scissors'",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{
 						{ProtoField: "game_index"}, // This must be name as the proto field
 						{ProtoField: "move"},       // This must be name as the proto field
+					},
+				},
+				{
+					RpcMethod: "ReviewMove",
+					Use:       "review-move [game_index] [revealed_move] [salt]",
+					Short:     "Reveals a submitted commitment for a specific Rock, Paper & Scissors Game",
+					Long:      "Reveals a submitted commitment for a specific Rock, Paper & Scissors Game",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{
+						{ProtoField: "game_index"},
+						{ProtoField: "revealed_move"},
+						{ProtoField: "salt"},
 					},
 				},
 			},

@@ -15,4 +15,12 @@ var (
 	ErrorGameEnded           = errors.Register(ModuleName, 10, "The error has ended")
 	ErrorInvalidPlayer       = errors.Register(ModuleName, 11, "Player invalid")
 	ErrorPlayerCantMove      = errors.Register(ModuleName, 12, "Player cant move")
+	ErrorInvalidTtl          = errors.Register(ModuleName, 13, "Ttl should be greater than zero")
+
+	ErrorInvalidCommitment    = errors.Register(ModuleName, 14, "Invalid commitment")
+	ErrorRevealPreviousMove   = errors.Register(ModuleName, 15, "Couldn't review previously move")
+	ErrorPlayerCantMakeMove   = errors.Register(ModuleName, 16, "Player can not move")
+	ErrorPlayerCantRevealMove = errors.Register(ModuleName, 17, "Player can not review move")
+	ErrorMoveAlreadyRevealed  = errors.Register(ModuleName, 18, "Move already reviewed")
+	ErrorWrongMoveRevealed    = errors.Register(ModuleName, 19, "Move review wrong")
 )
