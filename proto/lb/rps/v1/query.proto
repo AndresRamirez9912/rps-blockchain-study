@@ -1,7 +1,7 @@
 syntax = "proto3";
 package lb.rps.v1;
 
-option go_package = "github.com/0xlb/rps-chain/x/rps/types"; // store the generated files here
+option go_package = "challenge/x/rps/types"; // store the generated files here
 
 import "google/api/annotations.proto";
 import "cosmos/query/v1/query.proto";
@@ -17,14 +17,6 @@ service Query {
     option (google.api.http).get =
         "/rps/v1/game/{index}"; // Define el endpoint y el método REST
   }
-
-  // GetParams retrieves the current configuration parameters for the module.
-  rpc GetParams(QueryGetParams) returns (QueryGetParamsResponse) {
-    option (cosmos.query.v1.module_query_safe) =
-        true; // Habilita la API REST para este método
-    option (google.api.http).get =
-        "/rps/v1/params"; // Define el endpoint y el método REST
-  }
 }
 
 // QueryGetGameRequest is the request type for the GetGame RPC, containing the
@@ -37,13 +29,4 @@ message QueryGetGameRequest {
 // game details.
 message QueryGetGameResponse {
   Game game = 1; // The game details retrieved from the query.
-}
-
-// QueryGetParams is the request type for the GetParams RPC.
-message QueryGetParams {}
-
-// QueryGetParamsResponse is the response type for the GetParams RPC, containing
-// the module parameters.
-message QueryGetParamsResponse {
-  Params param = 1; // The current configuration parameters of the module.
 }

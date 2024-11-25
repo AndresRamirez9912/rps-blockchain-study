@@ -1,4 +1,4 @@
-module github.com/0xlb/rps-chain
+module challenge
 
 go 1.21
 

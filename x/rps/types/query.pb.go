@@ -288,8 +288,6 @@ func (c *queryClient) GetParams(ctx context.Context, in *QueryGetParams, opts ..
 type QueryServer interface {
 	// GetGame retrieves the details of a specific game based on the given index.
 	GetGame(context.Context, *QueryGetGameRequest) (*QueryGetGameResponse, error)
-	// GetParams retrieves the current configuration parameters for the module.
-	GetParams(context.Context, *QueryGetParams) (*QueryGetParamsResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -325,24 +323,6 @@ func _Query_GetGame_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_GetParams_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetParams)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).GetParams(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/lb.rps.v1.Query/GetParams",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).GetParams(ctx, req.(*QueryGetParams))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 var Query_serviceDesc = _Query_serviceDesc
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "lb.rps.v1.Query",
@@ -351,10 +331,6 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetGame",
 			Handler:    _Query_GetGame_Handler,
-		},
-		{
-			MethodName: "GetParams",
-			Handler:    _Query_GetParams_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

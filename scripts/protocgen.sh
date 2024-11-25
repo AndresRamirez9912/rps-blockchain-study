@@ -10,7 +10,7 @@ for dir in $proto_dirs; do
     # this regex checks if a proto file has its go_package set to github.com/alice/checkers/api/...
     # gogo proto files SHOULD ONLY be generated if this is false
     # you don't want gogo proto to run for proto files which are natively built for google.golang.org/protobuf
-    if grep -q "option go_package" "$file" && grep -H -o -c 'option go_package.*github.com/0xlb/rps-chain/api' "$file" | grep -q ':0$'; then
+    if grep -q "option go_package" "$file" && grep -H -o -c 'option go_package.*challenge/api' "$file" | grep -q ':0$'; then
       buf generate --template buf.gen.gogo.yaml $file
     fi
   done
@@ -21,7 +21,7 @@ buf generate --template buf.gen.pulsar.yaml
 
 cd ..
 
-cp -r github.com/0xlb/rps-chain/* ./
+cp -r challenge/* ./
 rm -rf api && mkdir api
 mv lb/* ./api
 rm -rf github.com lb

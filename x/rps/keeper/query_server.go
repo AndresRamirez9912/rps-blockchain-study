@@ -4,8 +4,9 @@ import (
 	"context"
 	"errors"
 
+	"challenge/x/rps/types"
+
 	"cosmossdk.io/collections"
-	"github.com/0xlb/rps-chain/x/rps/types"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -38,20 +39,4 @@ func (qs queryServer) GetGame(ctx context.Context, req *types.QueryGetGameReques
 	// Return response
 	return &types.QueryGetGameResponse{Game: &game}, nil
 
-}
-
-func (qs queryServer) GetParams(ctx context.Context, req *types.QueryGetParams) (*types.QueryGetParamsResponse, error) {
-	params, err := qs.k.Params.Get(ctx)
-	// If there is an error but is 'ErrNotFound' return empty
-	if errors.Is(err, collections.ErrNotFound) {
-		return &types.QueryGetParamsResponse{Param: &types.Params{}}, nil
-	}
-
-	// Return other errors
-	if err != nil {
-		return nil, status.Error(codes.Internal, err.Error())
-	}
-
-	// Return response
-	return &types.QueryGetParamsResponse{Param: &params}, nil
 }

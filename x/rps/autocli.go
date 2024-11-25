@@ -1,8 +1,9 @@
 package rps
 
 import (
+	rpsv1 "challenge/api/rps/v1"
+
 	autocliv1 "cosmossdk.io/api/cosmos/autocli/v1"
-	rpsv1 "github.com/0xlb/rps-chain/api/rps/v1"
 )
 
 // AutoCLIOptions implements the autocli.HasAutoCLIConfig interface.

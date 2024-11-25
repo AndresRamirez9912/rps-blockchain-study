@@ -6,7 +6,8 @@ import (
 	"os"
 	"path/filepath"
 
-	rpsKeeper "github.com/0xlb/rps-chain/x/rps/keeper"
+	rpsKeeper "challenge/x/rps/keeper"
+
 	dbm "github.com/cosmos/cosmos-db"
 
 	"cosmossdk.io/core/appconfig"
@@ -38,9 +39,10 @@ import (
 	paramsclient "github.com/cosmos/cosmos-sdk/x/params/client"
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 
+	_ "challenge/x/rps" // import for side-effects
+
 	_ "cosmossdk.io/api/cosmos/tx/config/v1"          // import for side-effects
 	_ "cosmossdk.io/x/upgrade"                        // import for side-effects
-	_ "github.com/0xlb/rps-chain/x/rps"               // import for side-effects
 	_ "github.com/cosmos/cosmos-sdk/x/auth"           // import for side-effects
 	_ "github.com/cosmos/cosmos-sdk/x/auth/tx/config" // import for side-effects
 	_ "github.com/cosmos/cosmos-sdk/x/bank"           // import for side-effects

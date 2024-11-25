@@ -5,9 +5,10 @@ import (
 	"encoding/json"
 	"fmt"
 
+	rpsKeeper "challenge/x/rps/keeper"
+	"challenge/x/rps/types"
+
 	"cosmossdk.io/core/appmodule"
-	rpsKeeper "github.com/0xlb/rps-chain/x/rps/keeper"
-	"github.com/0xlb/rps-chain/x/rps/types"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	gwruntime "github.com/grpc-ecosystem/grpc-gateway/runtime"
@@ -68,12 +69,6 @@ func (AppModule) ConsensusVersion() uint64 { return ConsensusVersion }
 func (am AppModule) RegisterServices(cfg module.Configurator) {
 	types.RegisterMsgServer(cfg.MsgServer(), rpsKeeper.NewMsgServerImpl(am.keeper))
 	types.RegisterQueryServer(cfg.QueryServer(), rpsKeeper.NewQueryServerImpl(am.keeper))
-
-	// Register in place module state migration migrations
-	// m := keeper.NewMigrator(am.keeper)
-	// if err := cfg.RegisterMigration(checkers.ModuleName, 1, m.Migrate1to2); err != nil {
-	// 	panic(fmt.Sprintf("failed to migrate x/%s from version 1 to 2: %v", checkers.ModuleName, err))
-	// }
 }
 
 // ********************* IMPLEMENT HasGenesis INTERFACE ******************

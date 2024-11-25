@@ -3,8 +3,9 @@ package types
 import (
 	"bytes"
 
+	"challenge/x/rps/rules"
+
 	"cosmossdk.io/errors"
-	"github.com/0xlb/rps-chain/x/rps/rules"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

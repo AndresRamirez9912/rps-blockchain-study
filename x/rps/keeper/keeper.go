@@ -4,10 +4,11 @@ import (
 	"context"
 	"fmt"
 
+	"challenge/x/rps/types"
+
 	"cosmossdk.io/collections"
 	"cosmossdk.io/core/address"
 	storetypes "cosmossdk.io/core/store"
-	"github.com/0xlb/rps-chain/x/rps/types"
 	"github.com/cosmos/cosmos-sdk/codec"
 )
 
@@ -21,7 +22,6 @@ type Keeper struct {
 
 	// state management
 	Schema     collections.Schema
-	Params     collections.Item[types.Params]
 	GameNumber collections.Sequence                // Counter the games
 	Games      collections.Map[uint64, types.Game] // Map [GameId] => Game
 }
@@ -39,7 +39,6 @@ func NewKeeper(cdc codec.BinaryCodec, addressCodec address.Codec, storeService s
 		cdc:          cdc,
 		addressCodec: addressCodec,
 		authority:    authority,
-		Params:       collections.NewItem(sb, types.ParamsKey, "params", codec.CollValue[types.Params](cdc)),
 		GameNumber:   collections.NewSequence(sb, types.GameNumberKey, "game_number"),
 		Games:        collections.NewMap(sb, types.GamesKey, "games", collections.Uint64Key, codec.CollValue[types.Game](cdc)),
 	}

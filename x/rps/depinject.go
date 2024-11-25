@@ -6,8 +6,9 @@ import (
 	"cosmossdk.io/core/store"
 	"cosmossdk.io/depinject"
 
-	modulev1 "github.com/0xlb/rps-chain/api/rps/module/v1"
-	rpsKeeper "github.com/0xlb/rps-chain/x/rps/keeper"
+	modulev1 "challenge/api/rps/module/v1"
+	rpsKeeper "challenge/x/rps/keeper"
+
 	"github.com/cosmos/cosmos-sdk/codec"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 )
