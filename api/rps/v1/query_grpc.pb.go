@@ -19,8 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Query_GetGame_FullMethodName   = "/lb.rps.v1.Query/GetGame"
-	Query_GetParams_FullMethodName = "/lb.rps.v1.Query/GetParams"
+	Query_GetStudent_FullMethodName = "/lb.rps.v1.Query/GetStudent"
 )
 
 // QueryClient is the client API for Query service.
@@ -30,10 +29,8 @@ const (
 // Query service defines the gRPC service for querying game-related information
 // and configuration parameters in the Rock, Paper & Scissors module.
 type QueryClient interface {
-	// GetGame retrieves the details of a specific game based on the given index.
-	GetGame(ctx context.Context, in *QueryGetGameRequest, opts ...grpc.CallOption) (*QueryGetGameResponse, error)
-	// GetParams retrieves the current configuration parameters for the module.
-	GetParams(ctx context.Context, in *QueryGetParams, opts ...grpc.CallOption) (*QueryGetParamsResponse, error)
+	// GetStudent retrieves the details of a specific student based on the given index.
+	GetStudent(ctx context.Context, in *QueryGetStudentRequest, opts ...grpc.CallOption) (*QueryGetStudentResponse, error)
 }
 
 type queryClient struct {
@@ -44,20 +41,10 @@ func NewQueryClient(cc grpc.ClientConnInterface) QueryClient {
 	return &queryClient{cc}
 }
 
-func (c *queryClient) GetGame(ctx context.Context, in *QueryGetGameRequest, opts ...grpc.CallOption) (*QueryGetGameResponse, error) {
+func (c *queryClient) GetStudent(ctx context.Context, in *QueryGetStudentRequest, opts ...grpc.CallOption) (*QueryGetStudentResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(QueryGetGameResponse)
-	err := c.cc.Invoke(ctx, Query_GetGame_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *queryClient) GetParams(ctx context.Context, in *QueryGetParams, opts ...grpc.CallOption) (*QueryGetParamsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(QueryGetParamsResponse)
-	err := c.cc.Invoke(ctx, Query_GetParams_FullMethodName, in, out, cOpts...)
+	out := new(QueryGetStudentResponse)
+	err := c.cc.Invoke(ctx, Query_GetStudent_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -71,10 +58,8 @@ func (c *queryClient) GetParams(ctx context.Context, in *QueryGetParams, opts ..
 // Query service defines the gRPC service for querying game-related information
 // and configuration parameters in the Rock, Paper & Scissors module.
 type QueryServer interface {
-	// GetGame retrieves the details of a specific game based on the given index.
-	GetGame(context.Context, *QueryGetGameRequest) (*QueryGetGameResponse, error)
-	// GetParams retrieves the current configuration parameters for the module.
-	GetParams(context.Context, *QueryGetParams) (*QueryGetParamsResponse, error)
+	// GetStudent retrieves the details of a specific student based on the given index.
+	GetStudent(context.Context, *QueryGetStudentRequest) (*QueryGetStudentResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -85,11 +70,8 @@ type QueryServer interface {
 // pointer dereference when methods are called.
 type UnimplementedQueryServer struct{}
 
-func (UnimplementedQueryServer) GetGame(context.Context, *QueryGetGameRequest) (*QueryGetGameResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetGame not implemented")
-}
-func (UnimplementedQueryServer) GetParams(context.Context, *QueryGetParams) (*QueryGetParamsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetParams not implemented")
+func (UnimplementedQueryServer) GetStudent(context.Context, *QueryGetStudentRequest) (*QueryGetStudentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStudent not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 func (UnimplementedQueryServer) testEmbeddedByValue()               {}
@@ -112,38 +94,20 @@ func RegisterQueryServer(s grpc.ServiceRegistrar, srv QueryServer) {
 	s.RegisterService(&Query_ServiceDesc, srv)
 }
 
-func _Query_GetGame_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetGameRequest)
+func _Query_GetStudent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetStudentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).GetGame(ctx, in)
+		return srv.(QueryServer).GetStudent(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_GetGame_FullMethodName,
+		FullMethod: Query_GetStudent_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).GetGame(ctx, req.(*QueryGetGameRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Query_GetParams_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetParams)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).GetParams(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Query_GetParams_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).GetParams(ctx, req.(*QueryGetParams))
+		return srv.(QueryServer).GetStudent(ctx, req.(*QueryGetStudentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -156,12 +120,8 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*QueryServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetGame",
-			Handler:    _Query_GetGame_Handler,
-		},
-		{
-			MethodName: "GetParams",
-			Handler:    _Query_GetParams_Handler,
+			MethodName: "GetStudent",
+			Handler:    _Query_GetStudent_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

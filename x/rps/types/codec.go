@@ -9,9 +9,8 @@ import (
 // RegisterInterfaces registers the interfaces types with the interface registry.
 func RegisterInterfaces(registry types.InterfaceRegistry) {
 	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgUpdateParams{}, // Register my MsgUpdateParams struct
-		&MsgCreateGame{},   // Register my MsgCreateGame struct
-		&MsgMakeMove{},     // Register my MsgMakeMove struct
+		&MsgCreateStudent{}, // Register my MsgCreateStudent struct
+		&MsgMakeMove{},      // Register my MsgMakeMove struct
 	)
 	msgservice.RegisterMsgServiceDesc(registry, &_Msg_serviceDesc)
 }

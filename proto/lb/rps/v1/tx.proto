@@ -12,23 +12,23 @@ import "lb/rps/v1/types.proto";
 service Msg {
   option (cosmos.msg.v1.service) = true;
 
-  // CreateGame creates a game
-  rpc CreateGame(MsgCreateGame) returns (MsgCreateGameResponse);
+  // CreateStudent creates an student
+  rpc CreateStudent(MsgCreateStudent) returns (MsgCreateStudentResponse);
   // MakeMove submit a move to the specific game
   rpc MakeMove(MsgMakeMove) returns (MsgMakeMoveResponse);
 }
 
-// MsgCreateGame defines the MsgCreateGame request type
-message MsgCreateGame {
-  option (cosmos.msg.v1.signer) = "creator";
+// MsgCreateStudent defines the MsgCreateStudent request type
+message MsgCreateStudent {
+  option (cosmos.msg.v1.signer) = "id"; // Define who is the signer of the transaction
 
-  string creator = 1 [ (cosmos_proto.scalar) = "cosmos.AddressString" ];
-  string oponent = 2 [ (cosmos_proto.scalar) = "cosmos.AddressString" ];
-  uint64 rounds = 3;
+  string id = 1 [ (cosmos_proto.scalar) = "cosmos.AddressString" ];
+  string name = 2;
+  uint64 age = 3;
 }
 
-// MsgCreateGame defines the MsgCreateGame response type
-message MsgCreateGameResponse {}
+// MsgCreateStudent defines the MsgCreateStudent response type
+message MsgCreateStudentResponse {}
 
 // MsgMakeMove defines the MsgMakeMove request type
 message MsgMakeMove {

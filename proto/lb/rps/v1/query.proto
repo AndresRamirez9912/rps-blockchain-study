@@ -10,23 +10,18 @@ import "lb/rps/v1/types.proto";
 // Query service defines the gRPC service for querying game-related information
 // and configuration parameters in the Rock, Paper & Scissors module.
 service Query {
-  // GetGame retrieves the details of a specific game based on the given index.
-  rpc GetGame(QueryGetGameRequest) returns (QueryGetGameResponse) {
-    option (cosmos.query.v1.module_query_safe) =
-        true; // Habilita la API REST para este método
-    option (google.api.http).get =
-        "/rps/v1/game/{index}"; // Define el endpoint y el método REST
-  }
+  // GetStudent retrieves the details of a specific student based on the given index.
+  rpc GetStudent(QueryGetStudentRequest) returns (QueryGetStudentResponse) {}
 }
 
-// QueryGetGameRequest is the request type for the GetGame RPC, containing the
-// game index.
-message QueryGetGameRequest {
-  uint64 index = 1; // The unique identifier of the game to retrieve.
+// QueryGetStudentRequest is the request type for the GetStudent RPC, containing the
+// student index.
+message QueryGetStudentRequest {
+  uint64 index = 1; // The unique identifier of the studen to retrieve.
 }
 
-// QueryGetGameResponse is the response type for the GetGame RPC, containing the
-// game details.
-message QueryGetGameResponse {
-  Game game = 1; // The game details retrieved from the query.
+// QueryGetStudentResponse is the response type for the GetStudent RPC, containing the
+// student details.
+message QueryGetStudentResponse {
+  Student student = 1; // The student details retrieved from the query.
 }

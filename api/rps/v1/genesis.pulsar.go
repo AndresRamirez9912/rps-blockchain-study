@@ -13,68 +13,66 @@ import (
 	sync "sync"
 )
 
-var _ protoreflect.List = (*_GenesisState_2_list)(nil)
+var _ protoreflect.List = (*_GenesisState_1_list)(nil)
 
-type _GenesisState_2_list struct {
-	list *[]*Game
+type _GenesisState_1_list struct {
+	list *[]*Student
 }
 
-func (x *_GenesisState_2_list) Len() int {
+func (x *_GenesisState_1_list) Len() int {
 	if x.list == nil {
 		return 0
 	}
 	return len(*x.list)
 }
 
-func (x *_GenesisState_2_list) Get(i int) protoreflect.Value {
+func (x *_GenesisState_1_list) Get(i int) protoreflect.Value {
 	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
 }
 
-func (x *_GenesisState_2_list) Set(i int, value protoreflect.Value) {
+func (x *_GenesisState_1_list) Set(i int, value protoreflect.Value) {
 	valueUnwrapped := value.Message()
-	concreteValue := valueUnwrapped.Interface().(*Game)
+	concreteValue := valueUnwrapped.Interface().(*Student)
 	(*x.list)[i] = concreteValue
 }
 
-func (x *_GenesisState_2_list) Append(value protoreflect.Value) {
+func (x *_GenesisState_1_list) Append(value protoreflect.Value) {
 	valueUnwrapped := value.Message()
-	concreteValue := valueUnwrapped.Interface().(*Game)
+	concreteValue := valueUnwrapped.Interface().(*Student)
 	*x.list = append(*x.list, concreteValue)
 }
 
-func (x *_GenesisState_2_list) AppendMutable() protoreflect.Value {
-	v := new(Game)
+func (x *_GenesisState_1_list) AppendMutable() protoreflect.Value {
+	v := new(Student)
 	*x.list = append(*x.list, v)
 	return protoreflect.ValueOfMessage(v.ProtoReflect())
 }
 
-func (x *_GenesisState_2_list) Truncate(n int) {
+func (x *_GenesisState_1_list) Truncate(n int) {
 	for i := n; i < len(*x.list); i++ {
 		(*x.list)[i] = nil
 	}
 	*x.list = (*x.list)[:n]
 }
 
-func (x *_GenesisState_2_list) NewElement() protoreflect.Value {
-	v := new(Game)
+func (x *_GenesisState_1_list) NewElement() protoreflect.Value {
+	v := new(Student)
 	return protoreflect.ValueOfMessage(v.ProtoReflect())
 }
 
-func (x *_GenesisState_2_list) IsValid() bool {
+func (x *_GenesisState_1_list) IsValid() bool {
 	return x.list != nil
 }
 
 var (
-	md_GenesisState        protoreflect.MessageDescriptor
-	fd_GenesisState_params protoreflect.FieldDescriptor
-	fd_GenesisState_games  protoreflect.FieldDescriptor
+	md_GenesisState          protoreflect.MessageDescriptor
+	fd_GenesisState_students protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_lb_rps_v1_genesis_proto_init()
 	md_GenesisState = File_lb_rps_v1_genesis_proto.Messages().ByName("GenesisState")
-	fd_GenesisState_params = md_GenesisState.Fields().ByName("params")
-	fd_GenesisState_games = md_GenesisState.Fields().ByName("games")
+	fd_GenesisState_students = md_GenesisState.Fields().ByName("students")
 }
 
 var _ protoreflect.Message = (*fastReflection_GenesisState)(nil)
@@ -142,15 +140,9 @@ func (x *fastReflection_GenesisState) Interface() protoreflect.ProtoMessage {
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_GenesisState) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Params != nil {
-		value := protoreflect.ValueOfMessage(x.Params.ProtoReflect())
-		if !f(fd_GenesisState_params, value) {
-			return
-		}
-	}
-	if len(x.Games) != 0 {
-		value := protoreflect.ValueOfList(&_GenesisState_2_list{list: &x.Games})
-		if !f(fd_GenesisState_games, value) {
+	if len(x.Students) != 0 {
+		value := protoreflect.ValueOfList(&_GenesisState_1_list{list: &x.Students})
+		if !f(fd_GenesisState_students, value) {
 			return
 		}
 	}
@@ -169,10 +161,8 @@ func (x *fastReflection_GenesisState) Range(f func(protoreflect.FieldDescriptor,
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_GenesisState) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "lb.rps.v1.GenesisState.params":
-		return x.Params != nil
-	case "lb.rps.v1.GenesisState.games":
-		return len(x.Games) != 0
+	case "lb.rps.v1.GenesisState.students":
+		return len(x.Students) != 0
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: lb.rps.v1.GenesisState"))
@@ -189,10 +179,8 @@ func (x *fastReflection_GenesisState) Has(fd protoreflect.FieldDescriptor) bool 
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_GenesisState) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "lb.rps.v1.GenesisState.params":
-		x.Params = nil
-	case "lb.rps.v1.GenesisState.games":
-		x.Games = nil
+	case "lb.rps.v1.GenesisState.students":
+		x.Students = nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: lb.rps.v1.GenesisState"))
@@ -209,14 +197,11 @@ func (x *fastReflection_GenesisState) Clear(fd protoreflect.FieldDescriptor) {
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_GenesisState) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "lb.rps.v1.GenesisState.params":
-		value := x.Params
-		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	case "lb.rps.v1.GenesisState.games":
-		if len(x.Games) == 0 {
-			return protoreflect.ValueOfList(&_GenesisState_2_list{})
+	case "lb.rps.v1.GenesisState.students":
+		if len(x.Students) == 0 {
+			return protoreflect.ValueOfList(&_GenesisState_1_list{})
 		}
-		listValue := &_GenesisState_2_list{list: &x.Games}
+		listValue := &_GenesisState_1_list{list: &x.Students}
 		return protoreflect.ValueOfList(listValue)
 	default:
 		if descriptor.IsExtension() {
@@ -238,12 +223,10 @@ func (x *fastReflection_GenesisState) Get(descriptor protoreflect.FieldDescripto
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_GenesisState) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "lb.rps.v1.GenesisState.params":
-		x.Params = value.Message().Interface().(*Params)
-	case "lb.rps.v1.GenesisState.games":
+	case "lb.rps.v1.GenesisState.students":
 		lv := value.List()
-		clv := lv.(*_GenesisState_2_list)
-		x.Games = *clv.list
+		clv := lv.(*_GenesisState_1_list)
+		x.Students = *clv.list
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: lb.rps.v1.GenesisState"))
@@ -264,16 +247,11 @@ func (x *fastReflection_GenesisState) Set(fd protoreflect.FieldDescriptor, value
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_GenesisState) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "lb.rps.v1.GenesisState.params":
-		if x.Params == nil {
-			x.Params = new(Params)
+	case "lb.rps.v1.GenesisState.students":
+		if x.Students == nil {
+			x.Students = []*Student{}
 		}
-		return protoreflect.ValueOfMessage(x.Params.ProtoReflect())
-	case "lb.rps.v1.GenesisState.games":
-		if x.Games == nil {
-			x.Games = []*Game{}
-		}
-		value := &_GenesisState_2_list{list: &x.Games}
+		value := &_GenesisState_1_list{list: &x.Students}
 		return protoreflect.ValueOfList(value)
 	default:
 		if fd.IsExtension() {
@@ -288,12 +266,9 @@ func (x *fastReflection_GenesisState) Mutable(fd protoreflect.FieldDescriptor) p
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_GenesisState) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "lb.rps.v1.GenesisState.params":
-		m := new(Params)
-		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	case "lb.rps.v1.GenesisState.games":
-		list := []*Game{}
-		return protoreflect.ValueOfList(&_GenesisState_2_list{list: &list})
+	case "lb.rps.v1.GenesisState.students":
+		list := []*Student{}
+		return protoreflect.ValueOfList(&_GenesisState_1_list{list: &list})
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: lb.rps.v1.GenesisState"))
@@ -363,12 +338,8 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 		var n int
 		var l int
 		_ = l
-		if x.Params != nil {
-			l = options.Size(x.Params)
-			n += 1 + l + runtime.Sov(uint64(l))
-		}
-		if len(x.Games) > 0 {
-			for _, e := range x.Games {
+		if len(x.Students) > 0 {
+			for _, e := range x.Students {
 				l = options.Size(e)
 				n += 1 + l + runtime.Sov(uint64(l))
 			}
@@ -402,9 +373,9 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if len(x.Games) > 0 {
-			for iNdEx := len(x.Games) - 1; iNdEx >= 0; iNdEx-- {
-				encoded, err := options.Marshal(x.Games[iNdEx])
+		if len(x.Students) > 0 {
+			for iNdEx := len(x.Students) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.Students[iNdEx])
 				if err != nil {
 					return protoiface.MarshalOutput{
 						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -415,22 +386,8 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 				copy(dAtA[i:], encoded)
 				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
 				i--
-				dAtA[i] = 0x12
+				dAtA[i] = 0xa
 			}
-		}
-		if x.Params != nil {
-			encoded, err := options.Marshal(x.Params)
-			if err != nil {
-				return protoiface.MarshalOutput{
-					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-					Buf:               input.Buf,
-				}, err
-			}
-			i -= len(encoded)
-			copy(dAtA[i:], encoded)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
-			i--
-			dAtA[i] = 0xa
 		}
 		if input.Buf != nil {
 			input.Buf = append(input.Buf, dAtA...)
@@ -483,7 +440,7 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Params", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Students", wireType)
 				}
 				var msglen int
 				for shift := uint(0); ; shift += 7 {
@@ -510,44 +467,8 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				if x.Params == nil {
-					x.Params = &Params{}
-				}
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Params); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				iNdEx = postIndex
-			case 2:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Games", wireType)
-				}
-				var msglen int
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					msglen |= int(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				if msglen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + msglen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.Games = append(x.Games, &Game{})
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Games[len(x.Games)-1]); err != nil {
+				x.Students = append(x.Students, &Student{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Students[len(x.Students)-1]); err != nil {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
@@ -605,10 +526,8 @@ type GenesisState struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Params defines all the parameters for the rps module
-	Params *Params `protobuf:"bytes,1,opt,name=params,proto3" json:"params,omitempty"`
-	// games are the stored games in the module
-	Games []*Game `protobuf:"bytes,2,rep,name=games,proto3" json:"games,omitempty"`
+	// Student defines the state in the module
+	Students []*Student `protobuf:"bytes,1,rep,name=students,proto3" json:"students,omitempty"`
 }
 
 func (x *GenesisState) Reset() {
@@ -631,16 +550,9 @@ func (*GenesisState) Descriptor() ([]byte, []int) {
 	return file_lb_rps_v1_genesis_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GenesisState) GetParams() *Params {
+func (x *GenesisState) GetStudents() []*Student {
 	if x != nil {
-		return x.Params
-	}
-	return nil
-}
-
-func (x *GenesisState) GetGames() []*Game {
-	if x != nil {
-		return x.Games
+		return x.Students
 	}
 	return nil
 }
@@ -653,23 +565,21 @@ var file_lb_rps_v1_genesis_proto_rawDesc = []byte{
 	0x73, 0x2e, 0x76, 0x31, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f,
 	0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x15, 0x6c, 0x62, 0x2f, 0x72,
 	0x70, 0x73, 0x2f, 0x76, 0x31, 0x2f, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x22, 0x6c, 0x0a, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x53, 0x74, 0x61, 0x74,
-	0x65, 0x12, 0x2f, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x11, 0x2e, 0x6c, 0x62, 0x2e, 0x72, 0x70, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x61,
-	0x72, 0x61, 0x6d, 0x73, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61,
-	0x6d, 0x73, 0x12, 0x2b, 0x0a, 0x05, 0x67, 0x61, 0x6d, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28,
-	0x0b, 0x32, 0x0f, 0x2e, 0x6c, 0x62, 0x2e, 0x72, 0x70, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x61,
-	0x6d, 0x65, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x05, 0x67, 0x61, 0x6d, 0x65, 0x73, 0x42,
-	0x92, 0x01, 0x0a, 0x0d, 0x63, 0x6f, 0x6d, 0x2e, 0x6c, 0x62, 0x2e, 0x72, 0x70, 0x73, 0x2e, 0x76,
-	0x31, 0x42, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50,
-	0x01, 0x5a, 0x2d, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x6c,
-	0x69, 0x63, 0x65, 0x2f, 0x63, 0x68, 0x65, 0x63, 0x6b, 0x65, 0x72, 0x73, 0x2f, 0x61, 0x70, 0x69,
-	0x2f, 0x6c, 0x62, 0x2f, 0x72, 0x70, 0x73, 0x2f, 0x76, 0x31, 0x3b, 0x72, 0x70, 0x73, 0x76, 0x31,
-	0xa2, 0x02, 0x03, 0x4c, 0x52, 0x58, 0xaa, 0x02, 0x09, 0x4c, 0x62, 0x2e, 0x52, 0x70, 0x73, 0x2e,
-	0x56, 0x31, 0xca, 0x02, 0x09, 0x4c, 0x62, 0x5c, 0x52, 0x70, 0x73, 0x5c, 0x56, 0x31, 0xe2, 0x02,
-	0x15, 0x4c, 0x62, 0x5c, 0x52, 0x70, 0x73, 0x5c, 0x56, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65,
-	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0b, 0x4c, 0x62, 0x3a, 0x3a, 0x52, 0x70, 0x73,
-	0x3a, 0x3a, 0x56, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x22, 0x44, 0x0a, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x53, 0x74, 0x61, 0x74,
+	0x65, 0x12, 0x34, 0x0a, 0x08, 0x73, 0x74, 0x75, 0x64, 0x65, 0x6e, 0x74, 0x73, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x6c, 0x62, 0x2e, 0x72, 0x70, 0x73, 0x2e, 0x76, 0x31, 0x2e,
+	0x53, 0x74, 0x75, 0x64, 0x65, 0x6e, 0x74, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x08, 0x73,
+	0x74, 0x75, 0x64, 0x65, 0x6e, 0x74, 0x73, 0x42, 0x92, 0x01, 0x0a, 0x0d, 0x63, 0x6f, 0x6d, 0x2e,
+	0x6c, 0x62, 0x2e, 0x72, 0x70, 0x73, 0x2e, 0x76, 0x31, 0x42, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73,
+	0x69, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x2d, 0x67, 0x69, 0x74, 0x68, 0x75,
+	0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x61, 0x6c, 0x69, 0x63, 0x65, 0x2f, 0x63, 0x68, 0x65, 0x63,
+	0x6b, 0x65, 0x72, 0x73, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x6c, 0x62, 0x2f, 0x72, 0x70, 0x73, 0x2f,
+	0x76, 0x31, 0x3b, 0x72, 0x70, 0x73, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x4c, 0x52, 0x58, 0xaa, 0x02,
+	0x09, 0x4c, 0x62, 0x2e, 0x52, 0x70, 0x73, 0x2e, 0x56, 0x31, 0xca, 0x02, 0x09, 0x4c, 0x62, 0x5c,
+	0x52, 0x70, 0x73, 0x5c, 0x56, 0x31, 0xe2, 0x02, 0x15, 0x4c, 0x62, 0x5c, 0x52, 0x70, 0x73, 0x5c,
+	0x56, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02,
+	0x0b, 0x4c, 0x62, 0x3a, 0x3a, 0x52, 0x70, 0x73, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -687,17 +597,15 @@ func file_lb_rps_v1_genesis_proto_rawDescGZIP() []byte {
 var file_lb_rps_v1_genesis_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_lb_rps_v1_genesis_proto_goTypes = []interface{}{
 	(*GenesisState)(nil), // 0: lb.rps.v1.GenesisState
-	(*Params)(nil),       // 1: lb.rps.v1.Params
-	(*Game)(nil),         // 2: lb.rps.v1.Game
+	(*Student)(nil),      // 1: lb.rps.v1.Student
 }
 var file_lb_rps_v1_genesis_proto_depIdxs = []int32{
-	1, // 0: lb.rps.v1.GenesisState.params:type_name -> lb.rps.v1.Params
-	2, // 1: lb.rps.v1.GenesisState.games:type_name -> lb.rps.v1.Game
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	1, // 0: lb.rps.v1.GenesisState.students:type_name -> lb.rps.v1.Student
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_lb_rps_v1_genesis_proto_init() }

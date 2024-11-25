@@ -1,7 +1,6 @@
 package rpsKeeper
 
 import (
-	"context"
 	"fmt"
 
 	"challenge/x/rps/types"
@@ -21,9 +20,8 @@ type Keeper struct {
 	authority string
 
 	// state management
-	Schema     collections.Schema
-	GameNumber collections.Sequence                // Counter the games
-	Games      collections.Map[uint64, types.Game] // Map [GameId] => Game
+	Schema   collections.Schema
+	Students collections.Map[string, types.Student] // Map [Id] => Student
 }
 
 // NewKeeper creates a new Keeper instance
@@ -39,8 +37,7 @@ func NewKeeper(cdc codec.BinaryCodec, addressCodec address.Codec, storeService s
 		cdc:          cdc,
 		addressCodec: addressCodec,
 		authority:    authority,
-		GameNumber:   collections.NewSequence(sb, types.GameNumberKey, "game_number"),
-		Games:        collections.NewMap(sb, types.GamesKey, "games", collections.Uint64Key, codec.CollValue[types.Game](cdc)),
+		Students:     collections.NewMap(sb, types.StudentsKey, "students", collections.StringKey, codec.CollValue[types.Student](cdc)),
 	}
 
 	schema, err := sb.Build() // Build the whole squema
@@ -56,13 +53,4 @@ func NewKeeper(cdc codec.BinaryCodec, addressCodec address.Codec, storeService s
 // GetAuthority returns the module's authority.
 func (k Keeper) GetAuthority() string {
 	return k.authority
-}
-
-// NextGameNumber returns and increments the global game number counter
-func (k Keeper) NextGameNumber(ctx context.Context) uint64 {
-	gameNumber, err := k.GameNumber.Next(ctx)
-	if err != nil {
-		panic(err)
-	}
-	return gameNumber + 1 // Sequence starts from zero
 }

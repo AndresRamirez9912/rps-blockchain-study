@@ -29,24 +29,24 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-// QueryGetGameRequest is the request type for the GetGame RPC, containing the
-// game index.
-type QueryGetGameRequest struct {
+// QueryGetStudentRequest is the request type for the GetStudent RPC, containing the
+// student index.
+type QueryGetStudentRequest struct {
 	Index uint64 `protobuf:"varint,1,opt,name=index,proto3" json:"index,omitempty"`
 }
 
-func (m *QueryGetGameRequest) Reset()         { *m = QueryGetGameRequest{} }
-func (m *QueryGetGameRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryGetGameRequest) ProtoMessage()    {}
-func (*QueryGetGameRequest) Descriptor() ([]byte, []int) {
+func (m *QueryGetStudentRequest) Reset()         { *m = QueryGetStudentRequest{} }
+func (m *QueryGetStudentRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetStudentRequest) ProtoMessage()    {}
+func (*QueryGetStudentRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_2244d936c0cd31a0, []int{0}
 }
-func (m *QueryGetGameRequest) XXX_Unmarshal(b []byte) error {
+func (m *QueryGetStudentRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryGetGameRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryGetStudentRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryGetGameRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryGetStudentRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -56,43 +56,43 @@ func (m *QueryGetGameRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte,
 		return b[:n], nil
 	}
 }
-func (m *QueryGetGameRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetGameRequest.Merge(m, src)
+func (m *QueryGetStudentRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetStudentRequest.Merge(m, src)
 }
-func (m *QueryGetGameRequest) XXX_Size() int {
+func (m *QueryGetStudentRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryGetGameRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetGameRequest.DiscardUnknown(m)
+func (m *QueryGetStudentRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetStudentRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryGetGameRequest proto.InternalMessageInfo
+var xxx_messageInfo_QueryGetStudentRequest proto.InternalMessageInfo
 
-func (m *QueryGetGameRequest) GetIndex() uint64 {
+func (m *QueryGetStudentRequest) GetIndex() uint64 {
 	if m != nil {
 		return m.Index
 	}
 	return 0
 }
 
-// QueryGetGameResponse is the response type for the GetGame RPC, containing the
-// game details.
-type QueryGetGameResponse struct {
-	Game *Game `protobuf:"bytes,1,opt,name=game,proto3" json:"game,omitempty"`
+// QueryGetStudentResponse is the response type for the GetStudent RPC, containing the
+// student details.
+type QueryGetStudentResponse struct {
+	Student *Student `protobuf:"bytes,1,opt,name=student,proto3" json:"student,omitempty"`
 }
 
-func (m *QueryGetGameResponse) Reset()         { *m = QueryGetGameResponse{} }
-func (m *QueryGetGameResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryGetGameResponse) ProtoMessage()    {}
-func (*QueryGetGameResponse) Descriptor() ([]byte, []int) {
+func (m *QueryGetStudentResponse) Reset()         { *m = QueryGetStudentResponse{} }
+func (m *QueryGetStudentResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetStudentResponse) ProtoMessage()    {}
+func (*QueryGetStudentResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_2244d936c0cd31a0, []int{1}
 }
-func (m *QueryGetGameResponse) XXX_Unmarshal(b []byte) error {
+func (m *QueryGetStudentResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryGetGameResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryGetStudentResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryGetGameResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryGetStudentResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -102,142 +102,51 @@ func (m *QueryGetGameResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte
 		return b[:n], nil
 	}
 }
-func (m *QueryGetGameResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetGameResponse.Merge(m, src)
+func (m *QueryGetStudentResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetStudentResponse.Merge(m, src)
 }
-func (m *QueryGetGameResponse) XXX_Size() int {
+func (m *QueryGetStudentResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryGetGameResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetGameResponse.DiscardUnknown(m)
+func (m *QueryGetStudentResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetStudentResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryGetGameResponse proto.InternalMessageInfo
+var xxx_messageInfo_QueryGetStudentResponse proto.InternalMessageInfo
 
-func (m *QueryGetGameResponse) GetGame() *Game {
+func (m *QueryGetStudentResponse) GetStudent() *Student {
 	if m != nil {
-		return m.Game
-	}
-	return nil
-}
-
-// QueryGetParams is the request type for the GetParams RPC.
-type QueryGetParams struct {
-}
-
-func (m *QueryGetParams) Reset()         { *m = QueryGetParams{} }
-func (m *QueryGetParams) String() string { return proto.CompactTextString(m) }
-func (*QueryGetParams) ProtoMessage()    {}
-func (*QueryGetParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2244d936c0cd31a0, []int{2}
-}
-func (m *QueryGetParams) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *QueryGetParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_QueryGetParams.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *QueryGetParams) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetParams.Merge(m, src)
-}
-func (m *QueryGetParams) XXX_Size() int {
-	return m.Size()
-}
-func (m *QueryGetParams) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetParams.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_QueryGetParams proto.InternalMessageInfo
-
-// QueryGetParamsResponse is the response type for the GetParams RPC, containing
-// the module parameters.
-type QueryGetParamsResponse struct {
-	Param *Params `protobuf:"bytes,1,opt,name=param,proto3" json:"param,omitempty"`
-}
-
-func (m *QueryGetParamsResponse) Reset()         { *m = QueryGetParamsResponse{} }
-func (m *QueryGetParamsResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryGetParamsResponse) ProtoMessage()    {}
-func (*QueryGetParamsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2244d936c0cd31a0, []int{3}
-}
-func (m *QueryGetParamsResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *QueryGetParamsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_QueryGetParamsResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *QueryGetParamsResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetParamsResponse.Merge(m, src)
-}
-func (m *QueryGetParamsResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *QueryGetParamsResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetParamsResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_QueryGetParamsResponse proto.InternalMessageInfo
-
-func (m *QueryGetParamsResponse) GetParam() *Params {
-	if m != nil {
-		return m.Param
+		return m.Student
 	}
 	return nil
 }
 
 func init() {
-	proto.RegisterType((*QueryGetGameRequest)(nil), "lb.rps.v1.QueryGetGameRequest")
-	proto.RegisterType((*QueryGetGameResponse)(nil), "lb.rps.v1.QueryGetGameResponse")
-	proto.RegisterType((*QueryGetParams)(nil), "lb.rps.v1.QueryGetParams")
-	proto.RegisterType((*QueryGetParamsResponse)(nil), "lb.rps.v1.QueryGetParamsResponse")
+	proto.RegisterType((*QueryGetStudentRequest)(nil), "lb.rps.v1.QueryGetStudentRequest")
+	proto.RegisterType((*QueryGetStudentResponse)(nil), "lb.rps.v1.QueryGetStudentResponse")
 }
 
 func init() { proto.RegisterFile("lb/rps/v1/query.proto", fileDescriptor_2244d936c0cd31a0) }
 
 var fileDescriptor_2244d936c0cd31a0 = []byte{
-	// 358 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0xcd, 0x49, 0xd2, 0x2f,
-	0x2a, 0x28, 0xd6, 0x2f, 0x33, 0xd4, 0x2f, 0x2c, 0x4d, 0x2d, 0xaa, 0xd4, 0x2b, 0x28, 0xca, 0x2f,
-	0xc9, 0x17, 0xe2, 0xcc, 0x49, 0xd2, 0x2b, 0x2a, 0x28, 0xd6, 0x2b, 0x33, 0x94, 0x92, 0x49, 0xcf,
-	0xcf, 0x4f, 0xcf, 0x49, 0xd5, 0x4f, 0x2c, 0xc8, 0xd4, 0x4f, 0xcc, 0xcb, 0xcb, 0x2f, 0x49, 0x2c,
-	0xc9, 0xcc, 0xcf, 0x2b, 0x86, 0x28, 0x94, 0x92, 0x4e, 0xce, 0x2f, 0xce, 0xcd, 0x2f, 0x86, 0x68,
-	0x46, 0x33, 0x45, 0x0a, 0xc9, 0xf0, 0x92, 0xca, 0x82, 0x54, 0xa8, 0x1e, 0x25, 0x6d, 0x2e, 0xe1,
-	0x40, 0x90, 0x2a, 0xf7, 0xd4, 0x12, 0xf7, 0xc4, 0xdc, 0xd4, 0xa0, 0xd4, 0xc2, 0xd2, 0xd4, 0xe2,
-	0x12, 0x21, 0x11, 0x2e, 0xd6, 0xcc, 0xbc, 0x94, 0xd4, 0x0a, 0x09, 0x46, 0x05, 0x46, 0x0d, 0x96,
-	0x20, 0x08, 0x47, 0xc9, 0x9a, 0x4b, 0x04, 0x55, 0x71, 0x71, 0x41, 0x7e, 0x5e, 0x71, 0xaa, 0x90,
-	0x32, 0x17, 0x4b, 0x7a, 0x62, 0x6e, 0x2a, 0x58, 0x31, 0xb7, 0x11, 0xbf, 0x1e, 0xdc, 0xc1, 0x7a,
-	0x60, 0x65, 0x60, 0x49, 0x25, 0x01, 0x2e, 0x3e, 0x98, 0xe6, 0x80, 0xc4, 0xa2, 0xc4, 0xdc, 0x62,
-	0x25, 0x47, 0x2e, 0x31, 0x54, 0x11, 0xb8, 0x81, 0xea, 0x5c, 0xac, 0x05, 0x20, 0x11, 0xa8, 0x89,
-	0x82, 0x48, 0x26, 0x42, 0x55, 0x42, 0xe4, 0x8d, 0xee, 0x31, 0x72, 0xb1, 0x82, 0xcd, 0x10, 0xca,
-	0xe5, 0x62, 0x87, 0x3a, 0x4b, 0x48, 0x0e, 0x49, 0x39, 0x16, 0xcf, 0x49, 0xc9, 0xe3, 0x94, 0x87,
-	0x58, 0xaf, 0xa4, 0xd8, 0xf1, 0x7c, 0x83, 0x16, 0x63, 0xd3, 0xe5, 0x27, 0x93, 0x99, 0xc4, 0x84,
-	0x44, 0x60, 0xc1, 0x06, 0xf2, 0x85, 0x7e, 0x35, 0x38, 0x24, 0x6a, 0x85, 0xd2, 0xb8, 0x38, 0xe1,
-	0xce, 0x16, 0x92, 0xc4, 0x62, 0x20, 0x44, 0x4a, 0x4a, 0x11, 0xa7, 0x14, 0xdc, 0x36, 0x69, 0x84,
-	0x6d, 0x02, 0x42, 0x7c, 0x30, 0xdb, 0xc0, 0xfe, 0x2b, 0x76, 0xb2, 0x3f, 0xf1, 0x48, 0x8e, 0xf1,
-	0xc2, 0x23, 0x39, 0xc6, 0x07, 0x8f, 0xe4, 0x18, 0x27, 0x3c, 0x96, 0x63, 0xb8, 0xf0, 0x58, 0x8e,
-	0xe1, 0xc6, 0x63, 0x39, 0x86, 0x28, 0xd5, 0xf4, 0xcc, 0x92, 0x8c, 0xd2, 0x24, 0xbd, 0xe4, 0xfc,
-	0x5c, 0x7d, 0x83, 0x0a, 0x48, 0xec, 0xea, 0x26, 0x67, 0x24, 0x66, 0xe6, 0xe9, 0x57, 0x80, 0x0d,
-	0x01, 0x47, 0x73, 0x12, 0x1b, 0x38, 0x9e, 0x8d, 0x01, 0x01, 0x00, 0x00, 0xff, 0xff, 0xbe, 0x6e,
-	0xa4, 0xba, 0x5d, 0x02, 0x00, 0x00,
+	// 257 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x90, 0xc1, 0x4a, 0x03, 0x31,
+	0x10, 0x86, 0x37, 0x60, 0x15, 0xe3, 0x2d, 0x58, 0x95, 0x55, 0x82, 0xee, 0xc9, 0x83, 0x24, 0xb4,
+	0xbe, 0x81, 0x97, 0x9e, 0xad, 0x78, 0xf1, 0x20, 0xec, 0xb6, 0xc3, 0xba, 0x10, 0x33, 0xe9, 0x4e,
+	0xb6, 0xb4, 0x6f, 0xe1, 0x63, 0x79, 0xec, 0xd1, 0xa3, 0xec, 0xbe, 0x88, 0x98, 0x58, 0x2d, 0x2a,
+	0x3d, 0xce, 0xf0, 0xfd, 0x1f, 0x3f, 0x3f, 0xef, 0x9b, 0x42, 0xd7, 0x8e, 0xf4, 0x7c, 0xa0, 0x67,
+	0x0d, 0xd4, 0x4b, 0xe5, 0x6a, 0xf4, 0x28, 0xf6, 0x4d, 0xa1, 0x6a, 0x47, 0x6a, 0x3e, 0x48, 0xcf,
+	0x4a, 0xc4, 0xd2, 0x80, 0xce, 0x5d, 0xa5, 0x73, 0x6b, 0xd1, 0xe7, 0xbe, 0x42, 0x4b, 0x11, 0x4c,
+	0x4f, 0x27, 0x48, 0xcf, 0x48, 0x31, 0xfc, 0xcb, 0x92, 0x6e, 0xc8, 0xfd, 0xd2, 0xc1, 0x57, 0x26,
+	0x53, 0xfc, 0xe8, 0xf6, 0x93, 0x1a, 0x81, 0xbf, 0xf3, 0xcd, 0x14, 0xac, 0x1f, 0xc3, 0xac, 0x01,
+	0xf2, 0xe2, 0x90, 0xf7, 0x2a, 0x3b, 0x85, 0xc5, 0x09, 0x3b, 0x67, 0x97, 0x3b, 0xe3, 0x78, 0x64,
+	0x23, 0x7e, 0xfc, 0x87, 0x27, 0x87, 0x96, 0x40, 0x5c, 0xf1, 0x3d, 0x8a, 0xaf, 0x10, 0x39, 0x18,
+	0x0a, 0xf5, 0xdd, 0x5c, 0xad, 0xe1, 0x35, 0x32, 0x7c, 0xe4, 0xbd, 0x20, 0x12, 0xf7, 0x9c, 0xff,
+	0xc8, 0xc4, 0xc5, 0x46, 0xe6, 0xff, 0x62, 0x69, 0xb6, 0x0d, 0x89, 0x5d, 0xb2, 0xe4, 0x46, 0xbf,
+	0xb6, 0x92, 0xad, 0x5a, 0xc9, 0xde, 0x5b, 0xc9, 0x5e, 0x3a, 0x99, 0xac, 0x3a, 0x99, 0xbc, 0x75,
+	0x32, 0x79, 0xe8, 0x4f, 0x9e, 0x72, 0x63, 0xc0, 0x96, 0xa0, 0x17, 0x61, 0x92, 0xb0, 0x47, 0xb1,
+	0x1b, 0x06, 0xb9, 0xfe, 0x08, 0x00, 0x00, 0xff, 0xff, 0xaa, 0xdb, 0x87, 0xe9, 0x86, 0x01, 0x00,
+	0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -252,10 +161,8 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type QueryClient interface {
-	// GetGame retrieves the details of a specific game based on the given index.
-	GetGame(ctx context.Context, in *QueryGetGameRequest, opts ...grpc.CallOption) (*QueryGetGameResponse, error)
-	// GetParams retrieves the current configuration parameters for the module.
-	GetParams(ctx context.Context, in *QueryGetParams, opts ...grpc.CallOption) (*QueryGetParamsResponse, error)
+	// GetStudent retrieves the details of a specific student based on the given index.
+	GetStudent(ctx context.Context, in *QueryGetStudentRequest, opts ...grpc.CallOption) (*QueryGetStudentResponse, error)
 }
 
 type queryClient struct {
@@ -266,18 +173,9 @@ func NewQueryClient(cc grpc1.ClientConn) QueryClient {
 	return &queryClient{cc}
 }
 
-func (c *queryClient) GetGame(ctx context.Context, in *QueryGetGameRequest, opts ...grpc.CallOption) (*QueryGetGameResponse, error) {
-	out := new(QueryGetGameResponse)
-	err := c.cc.Invoke(ctx, "/lb.rps.v1.Query/GetGame", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *queryClient) GetParams(ctx context.Context, in *QueryGetParams, opts ...grpc.CallOption) (*QueryGetParamsResponse, error) {
-	out := new(QueryGetParamsResponse)
-	err := c.cc.Invoke(ctx, "/lb.rps.v1.Query/GetParams", in, out, opts...)
+func (c *queryClient) GetStudent(ctx context.Context, in *QueryGetStudentRequest, opts ...grpc.CallOption) (*QueryGetStudentResponse, error) {
+	out := new(QueryGetStudentResponse)
+	err := c.cc.Invoke(ctx, "/lb.rps.v1.Query/GetStudent", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -286,39 +184,36 @@ func (c *queryClient) GetParams(ctx context.Context, in *QueryGetParams, opts ..
 
 // QueryServer is the server API for Query service.
 type QueryServer interface {
-	// GetGame retrieves the details of a specific game based on the given index.
-	GetGame(context.Context, *QueryGetGameRequest) (*QueryGetGameResponse, error)
+	// GetStudent retrieves the details of a specific student based on the given index.
+	GetStudent(context.Context, *QueryGetStudentRequest) (*QueryGetStudentResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
 type UnimplementedQueryServer struct {
 }
 
-func (*UnimplementedQueryServer) GetGame(ctx context.Context, req *QueryGetGameRequest) (*QueryGetGameResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetGame not implemented")
-}
-func (*UnimplementedQueryServer) GetParams(ctx context.Context, req *QueryGetParams) (*QueryGetParamsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetParams not implemented")
+func (*UnimplementedQueryServer) GetStudent(ctx context.Context, req *QueryGetStudentRequest) (*QueryGetStudentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStudent not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
 	s.RegisterService(&_Query_serviceDesc, srv)
 }
 
-func _Query_GetGame_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetGameRequest)
+func _Query_GetStudent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetStudentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).GetGame(ctx, in)
+		return srv.(QueryServer).GetStudent(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/lb.rps.v1.Query/GetGame",
+		FullMethod: "/lb.rps.v1.Query/GetStudent",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).GetGame(ctx, req.(*QueryGetGameRequest))
+		return srv.(QueryServer).GetStudent(ctx, req.(*QueryGetStudentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -329,15 +224,15 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*QueryServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetGame",
-			Handler:    _Query_GetGame_Handler,
+			MethodName: "GetStudent",
+			Handler:    _Query_GetStudent_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "lb/rps/v1/query.proto",
 }
 
-func (m *QueryGetGameRequest) Marshal() (dAtA []byte, err error) {
+func (m *QueryGetStudentRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -347,12 +242,12 @@ func (m *QueryGetGameRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryGetGameRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryGetStudentRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryGetGameRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryGetStudentRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -365,7 +260,7 @@ func (m *QueryGetGameRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryGetGameResponse) Marshal() (dAtA []byte, err error) {
+func (m *QueryGetStudentResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -375,77 +270,19 @@ func (m *QueryGetGameResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryGetGameResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryGetStudentResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryGetGameResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryGetStudentResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.Game != nil {
+	if m.Student != nil {
 		{
-			size, err := m.Game.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintQuery(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *QueryGetParams) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *QueryGetParams) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *QueryGetParams) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	return len(dAtA) - i, nil
-}
-
-func (m *QueryGetParamsResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *QueryGetParamsResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *QueryGetParamsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.Param != nil {
-		{
-			size, err := m.Param.MarshalToSizedBuffer(dAtA[:i])
+			size, err := m.Student.MarshalToSizedBuffer(dAtA[:i])
 			if err != nil {
 				return 0, err
 			}
@@ -469,7 +306,7 @@ func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
-func (m *QueryGetGameRequest) Size() (n int) {
+func (m *QueryGetStudentRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -481,36 +318,14 @@ func (m *QueryGetGameRequest) Size() (n int) {
 	return n
 }
 
-func (m *QueryGetGameResponse) Size() (n int) {
+func (m *QueryGetStudentResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if m.Game != nil {
-		l = m.Game.Size()
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	return n
-}
-
-func (m *QueryGetParams) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	return n
-}
-
-func (m *QueryGetParamsResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Param != nil {
-		l = m.Param.Size()
+	if m.Student != nil {
+		l = m.Student.Size()
 		n += 1 + l + sovQuery(uint64(l))
 	}
 	return n
@@ -522,7 +337,7 @@ func sovQuery(x uint64) (n int) {
 func sozQuery(x uint64) (n int) {
 	return sovQuery(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
-func (m *QueryGetGameRequest) Unmarshal(dAtA []byte) error {
+func (m *QueryGetStudentRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -545,10 +360,10 @@ func (m *QueryGetGameRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetGameRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryGetStudentRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetGameRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryGetStudentRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -591,7 +406,7 @@ func (m *QueryGetGameRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryGetGameResponse) Unmarshal(dAtA []byte) error {
+func (m *QueryGetStudentResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -614,15 +429,15 @@ func (m *QueryGetGameResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetGameResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryGetStudentResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetGameResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryGetStudentResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Game", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Student", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -649,146 +464,10 @@ func (m *QueryGetGameResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Game == nil {
-				m.Game = &Game{}
+			if m.Student == nil {
+				m.Student = &Student{}
 			}
-			if err := m.Game.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipQuery(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *QueryGetParams) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowQuery
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetParams: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetParams: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		default:
-			iNdEx = preIndex
-			skippy, err := skipQuery(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *QueryGetParamsResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowQuery
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetParamsResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetParamsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Param", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Param == nil {
-				m.Param = &Params{}
-			}
-			if err := m.Param.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.Student.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

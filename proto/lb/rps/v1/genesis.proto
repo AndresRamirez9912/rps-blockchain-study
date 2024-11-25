@@ -8,6 +8,6 @@ import "lb/rps/v1/types.proto";
 
 // GenesisState defines the rps module's genesis State
 message GenesisState {
-  // games are the stored games in the module
-  repeated Game games = 1 [ (gogoproto.nullable) = false ];
+  // Student defines the state in the module
+  repeated Student students = 1 [ (gogoproto.nullable) = false ];
 }
