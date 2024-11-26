@@ -11,7 +11,12 @@ import "lb/rps/v1/types.proto";
 // and configuration parameters in the Rock, Paper & Scissors module.
 service Query {
   // GetStudent retrieves the details of a specific student based on the given index.
-  rpc GetStudent(QueryGetStudentRequest) returns (QueryGetStudentResponse) {}
+  rpc GetStudent(QueryGetStudentRequest) returns (QueryGetStudentResponse) {
+    option (cosmos.query.v1.module_query_safe) =
+        true; // Habilita la API REST para este método
+    option (google.api.http).get =
+        "/rps/v1/game/{index}"; // Define el endpoint y el método REST
+  }
 }
 
 // QueryGetStudentRequest is the request type for the GetStudent RPC, containing the

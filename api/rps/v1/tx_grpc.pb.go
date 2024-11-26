@@ -20,7 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	Msg_CreateStudent_FullMethodName = "/lb.rps.v1.Msg/CreateStudent"
-	Msg_MakeMove_FullMethodName      = "/lb.rps.v1.Msg/MakeMove"
+	Msg_DeleteStudent_FullMethodName = "/lb.rps.v1.Msg/DeleteStudent"
 )
 
 // MsgClient is the client API for Msg service.
@@ -31,8 +31,8 @@ const (
 type MsgClient interface {
 	// CreateStudent creates an student
 	CreateStudent(ctx context.Context, in *MsgCreateStudent, opts ...grpc.CallOption) (*MsgCreateStudentResponse, error)
-	// MakeMove submit a move to the specific game
-	MakeMove(ctx context.Context, in *MsgMakeMove, opts ...grpc.CallOption) (*MsgMakeMoveResponse, error)
+	// DeleteStudent deletes an student
+	DeleteStudent(ctx context.Context, in *MsgDeleteStudent, opts ...grpc.CallOption) (*MsgDeleteStudentResponse, error)
 }
 
 type msgClient struct {
@@ -53,10 +53,10 @@ func (c *msgClient) CreateStudent(ctx context.Context, in *MsgCreateStudent, opt
 	return out, nil
 }
 
-func (c *msgClient) MakeMove(ctx context.Context, in *MsgMakeMove, opts ...grpc.CallOption) (*MsgMakeMoveResponse, error) {
+func (c *msgClient) DeleteStudent(ctx context.Context, in *MsgDeleteStudent, opts ...grpc.CallOption) (*MsgDeleteStudentResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(MsgMakeMoveResponse)
-	err := c.cc.Invoke(ctx, Msg_MakeMove_FullMethodName, in, out, cOpts...)
+	out := new(MsgDeleteStudentResponse)
+	err := c.cc.Invoke(ctx, Msg_DeleteStudent_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -71,8 +71,8 @@ func (c *msgClient) MakeMove(ctx context.Context, in *MsgMakeMove, opts ...grpc.
 type MsgServer interface {
 	// CreateStudent creates an student
 	CreateStudent(context.Context, *MsgCreateStudent) (*MsgCreateStudentResponse, error)
-	// MakeMove submit a move to the specific game
-	MakeMove(context.Context, *MsgMakeMove) (*MsgMakeMoveResponse, error)
+	// DeleteStudent deletes an student
+	DeleteStudent(context.Context, *MsgDeleteStudent) (*MsgDeleteStudentResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -86,8 +86,8 @@ type UnimplementedMsgServer struct{}
 func (UnimplementedMsgServer) CreateStudent(context.Context, *MsgCreateStudent) (*MsgCreateStudentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateStudent not implemented")
 }
-func (UnimplementedMsgServer) MakeMove(context.Context, *MsgMakeMove) (*MsgMakeMoveResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method MakeMove not implemented")
+func (UnimplementedMsgServer) DeleteStudent(context.Context, *MsgDeleteStudent) (*MsgDeleteStudentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteStudent not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 func (UnimplementedMsgServer) testEmbeddedByValue()             {}
@@ -128,20 +128,20 @@ func _Msg_CreateStudent_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_MakeMove_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgMakeMove)
+func _Msg_DeleteStudent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgDeleteStudent)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MsgServer).MakeMove(ctx, in)
+		return srv.(MsgServer).DeleteStudent(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Msg_MakeMove_FullMethodName,
+		FullMethod: Msg_DeleteStudent_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).MakeMove(ctx, req.(*MsgMakeMove))
+		return srv.(MsgServer).DeleteStudent(ctx, req.(*MsgDeleteStudent))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -158,8 +158,8 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Msg_CreateStudent_Handler,
 		},
 		{
-			MethodName: "MakeMove",
-			Handler:    _Msg_MakeMove_Handler,
+			MethodName: "DeleteStudent",
+			Handler:    _Msg_DeleteStudent_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

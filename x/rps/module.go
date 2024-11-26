@@ -102,8 +102,11 @@ func (am AppModule) InitGenesis(ctx sdk.Context, cdc codec.JSONCodec, data json.
 // ExportGenesis returns the exported genesis state as raw bytes for the circuit
 // module.
 func (am AppModule) ExportGenesis(ctx sdk.Context, cdc codec.JSONCodec) json.RawMessage {
-
-	return nil
+	gs, err := am.keeper.ExportGenesis(ctx)
+	if err != nil {
+		panic(fmt.Sprintf("failed to export %s genesis state: %v", types.ModuleName, err))
+	}
+	return cdc.MustMarshalJSON(gs)
 }
 
 // ***********************************************************************

@@ -1,7 +1,9 @@
 package types
 
 import (
-	"cosmossdk.io/errors"
+	"errors"
+
+	sdkerrors "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
@@ -29,11 +31,11 @@ func (g Student) Validate() error {
 	}
 
 	if address.Empty() {
-		return nil // TODO:
+		return errors.New("Address empty")
 	}
 
 	if g.Age < 0 {
-		return nil
+		return errors.New("Invalid Age")
 	}
 
 	return nil
@@ -42,5 +44,5 @@ func (g Student) Validate() error {
 func getStudentAddress(address string) (sdk.AccAddress, error) {
 	// Validate the address has our prefix (it means the wallet is from out blockchain)
 	addr, err := sdk.AccAddressFromBech32(address)
-	return addr, errors.Wrap(err, "Invalid Address")
+	return addr, sdkerrors.Wrap(err, "Invalid Address")
 }

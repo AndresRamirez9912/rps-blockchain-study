@@ -24,4 +24,4 @@ cd ..
 cp -r challenge/* ./
 rm -rf api && mkdir api
 mv lb/* ./api
-rm -rf github.com lb
+rm -rf challenge lb

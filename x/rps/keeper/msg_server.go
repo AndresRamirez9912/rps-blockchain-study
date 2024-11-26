@@ -20,11 +20,11 @@ func NewMsgServerImpl(keeper Keeper) types.MsgServer {
 
 // Implement MsgServer interface
 func (ms msgServer) CreateStudent(ctx context.Context, msg *types.MsgCreateStudent) (*types.MsgCreateStudentResponse, error) {
-	// TODO: Create function to create game in the blockchain
+	// TODO: Create the logic to create student in the blockchain
 	return &types.MsgCreateStudentResponse{}, nil // Return the response as the interface needs (and proto file specify)
 }
 
-func (ms msgServer) MakeMove(ctx context.Context, msg *types.MsgMakeMove) (*types.MsgMakeMoveResponse, error) {
-
-	return &types.MsgMakeMoveResponse{}, nil
+func (ms msgServer) DeleteStudent(ctx context.Context, msg *types.MsgDeleteStudent) (*types.MsgDeleteStudentResponse, error) {
+	// TODO: Create the logic to delete student in the blockchain
+	return &types.MsgDeleteStudentResponse{}, nil
 }

@@ -14,8 +14,8 @@ service Msg {
 
   // CreateStudent creates an student
   rpc CreateStudent(MsgCreateStudent) returns (MsgCreateStudentResponse);
-  // MakeMove submit a move to the specific game
-  rpc MakeMove(MsgMakeMove) returns (MsgMakeMoveResponse);
+  // DeleteStudent deletes an student
+  rpc DeleteStudent(MsgDeleteStudent) returns (MsgDeleteStudentResponse);
 }
 
 // MsgCreateStudent defines the MsgCreateStudent request type
@@ -30,16 +30,13 @@ message MsgCreateStudent {
 // MsgCreateStudent defines the MsgCreateStudent response type
 message MsgCreateStudentResponse {}
 
-// MsgMakeMove defines the MsgMakeMove request type
-message MsgMakeMove {
+// MsgDeleteStudent defines the MsgDeleteStudent request type
+message MsgDeleteStudent {
   option (cosmos.msg.v1.signer) =
-      "player"; // Define who is the signer in the request
+      "id"; // Define who is the signer in the request
 
-  // Player is the message sender
-  string player = 1;
-  uint64 game_index = 2;
-  string move = 3;
+  string id = 1;
 }
 
-// MsgMakeMove defines the MsgMakeMove response type
-message MsgMakeMoveResponse {}
+// MsgDeleteStudentResponse defines the MsgDeleteStudentResponse response type
+message MsgDeleteStudentResponse {}

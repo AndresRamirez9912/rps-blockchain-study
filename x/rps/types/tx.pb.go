@@ -128,26 +128,23 @@ func (m *MsgCreateStudentResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgCreateStudentResponse proto.InternalMessageInfo
 
-// MsgMakeMove defines the MsgMakeMove request type
-type MsgMakeMove struct {
-	// Player is the message sender
-	Player    string `protobuf:"bytes,1,opt,name=player,proto3" json:"player,omitempty"`
-	GameIndex uint64 `protobuf:"varint,2,opt,name=game_index,json=gameIndex,proto3" json:"game_index,omitempty"`
-	Move      string `protobuf:"bytes,3,opt,name=move,proto3" json:"move,omitempty"`
+// MsgDeleteStudent defines the MsgDeleteStudent request type
+type MsgDeleteStudent struct {
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (m *MsgMakeMove) Reset()         { *m = MsgMakeMove{} }
-func (m *MsgMakeMove) String() string { return proto.CompactTextString(m) }
-func (*MsgMakeMove) ProtoMessage()    {}
-func (*MsgMakeMove) Descriptor() ([]byte, []int) {
+func (m *MsgDeleteStudent) Reset()         { *m = MsgDeleteStudent{} }
+func (m *MsgDeleteStudent) String() string { return proto.CompactTextString(m) }
+func (*MsgDeleteStudent) ProtoMessage()    {}
+func (*MsgDeleteStudent) Descriptor() ([]byte, []int) {
 	return fileDescriptor_a1eea8fddb946f7d, []int{2}
 }
-func (m *MsgMakeMove) XXX_Unmarshal(b []byte) error {
+func (m *MsgDeleteStudent) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *MsgMakeMove) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *MsgDeleteStudent) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_MsgMakeMove.Marshal(b, m, deterministic)
+		return xxx_messageInfo_MsgDeleteStudent.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -157,55 +154,41 @@ func (m *MsgMakeMove) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) 
 		return b[:n], nil
 	}
 }
-func (m *MsgMakeMove) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MsgMakeMove.Merge(m, src)
+func (m *MsgDeleteStudent) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgDeleteStudent.Merge(m, src)
 }
-func (m *MsgMakeMove) XXX_Size() int {
+func (m *MsgDeleteStudent) XXX_Size() int {
 	return m.Size()
 }
-func (m *MsgMakeMove) XXX_DiscardUnknown() {
-	xxx_messageInfo_MsgMakeMove.DiscardUnknown(m)
+func (m *MsgDeleteStudent) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgDeleteStudent.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_MsgMakeMove proto.InternalMessageInfo
+var xxx_messageInfo_MsgDeleteStudent proto.InternalMessageInfo
 
-func (m *MsgMakeMove) GetPlayer() string {
+func (m *MsgDeleteStudent) GetId() string {
 	if m != nil {
-		return m.Player
+		return m.Id
 	}
 	return ""
 }
 
-func (m *MsgMakeMove) GetGameIndex() uint64 {
-	if m != nil {
-		return m.GameIndex
-	}
-	return 0
+// MsgDeleteStudentResponse defines the MsgDeleteStudentResponse response type
+type MsgDeleteStudentResponse struct {
 }
 
-func (m *MsgMakeMove) GetMove() string {
-	if m != nil {
-		return m.Move
-	}
-	return ""
-}
-
-// MsgMakeMove defines the MsgMakeMove response type
-type MsgMakeMoveResponse struct {
-}
-
-func (m *MsgMakeMoveResponse) Reset()         { *m = MsgMakeMoveResponse{} }
-func (m *MsgMakeMoveResponse) String() string { return proto.CompactTextString(m) }
-func (*MsgMakeMoveResponse) ProtoMessage()    {}
-func (*MsgMakeMoveResponse) Descriptor() ([]byte, []int) {
+func (m *MsgDeleteStudentResponse) Reset()         { *m = MsgDeleteStudentResponse{} }
+func (m *MsgDeleteStudentResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgDeleteStudentResponse) ProtoMessage()    {}
+func (*MsgDeleteStudentResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_a1eea8fddb946f7d, []int{3}
 }
-func (m *MsgMakeMoveResponse) XXX_Unmarshal(b []byte) error {
+func (m *MsgDeleteStudentResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *MsgMakeMoveResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *MsgDeleteStudentResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_MsgMakeMoveResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_MsgDeleteStudentResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -215,54 +198,51 @@ func (m *MsgMakeMoveResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte,
 		return b[:n], nil
 	}
 }
-func (m *MsgMakeMoveResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MsgMakeMoveResponse.Merge(m, src)
+func (m *MsgDeleteStudentResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgDeleteStudentResponse.Merge(m, src)
 }
-func (m *MsgMakeMoveResponse) XXX_Size() int {
+func (m *MsgDeleteStudentResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *MsgMakeMoveResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_MsgMakeMoveResponse.DiscardUnknown(m)
+func (m *MsgDeleteStudentResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgDeleteStudentResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_MsgMakeMoveResponse proto.InternalMessageInfo
+var xxx_messageInfo_MsgDeleteStudentResponse proto.InternalMessageInfo
 
 func init() {
 	proto.RegisterType((*MsgCreateStudent)(nil), "lb.rps.v1.MsgCreateStudent")
 	proto.RegisterType((*MsgCreateStudentResponse)(nil), "lb.rps.v1.MsgCreateStudentResponse")
-	proto.RegisterType((*MsgMakeMove)(nil), "lb.rps.v1.MsgMakeMove")
-	proto.RegisterType((*MsgMakeMoveResponse)(nil), "lb.rps.v1.MsgMakeMoveResponse")
+	proto.RegisterType((*MsgDeleteStudent)(nil), "lb.rps.v1.MsgDeleteStudent")
+	proto.RegisterType((*MsgDeleteStudentResponse)(nil), "lb.rps.v1.MsgDeleteStudentResponse")
 }
 
 func init() { proto.RegisterFile("lb/rps/v1/tx.proto", fileDescriptor_a1eea8fddb946f7d) }
 
 var fileDescriptor_a1eea8fddb946f7d = []byte{
-	// 391 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x51, 0xbd, 0x6e, 0xe2, 0x40,
-	0x10, 0x66, 0x0d, 0xc7, 0x9d, 0x17, 0x9d, 0x84, 0xf6, 0xe0, 0xce, 0xe7, 0xd3, 0x59, 0xc8, 0x69,
-	0x10, 0x52, 0x6c, 0x91, 0x74, 0x74, 0x21, 0x55, 0x0a, 0x17, 0x31, 0x5d, 0x1a, 0x64, 0xf0, 0x68,
-	0x63, 0x61, 0x7b, 0x2d, 0xaf, 0x63, 0x41, 0x17, 0xe5, 0x09, 0xf2, 0x0e, 0x79, 0x01, 0x8a, 0x3c,
-	0x44, 0x4a, 0x94, 0x2a, 0x65, 0x04, 0x05, 0xaf, 0x11, 0xad, 0x7f, 0x12, 0x40, 0x51, 0xba, 0x6f,
-	0xbe, 0xf9, 0x66, 0xbe, 0xd9, 0xfd, 0x30, 0xf1, 0x27, 0x66, 0x1c, 0x71, 0x33, 0xed, 0x9b, 0xc9,
-	0xdc, 0x88, 0x62, 0x96, 0x30, 0x22, 0xfb, 0x13, 0x23, 0x8e, 0xb8, 0x91, 0xf6, 0xd5, 0x3f, 0x53,
-	0xc6, 0x03, 0xc6, 0xcd, 0x80, 0x53, 0x21, 0x09, 0x38, 0xcd, 0x35, 0xea, 0xdf, 0xbc, 0x31, 0xce,
-	0x2a, 0x33, 0x2f, 0x8a, 0x56, 0x8b, 0x32, 0xca, 0x72, 0x5e, 0xa0, 0x82, 0x6d, 0xef, 0x18, 0x2d,
-	0x22, 0x28, 0xc4, 0xfa, 0x0c, 0x37, 0x2d, 0x4e, 0xcf, 0x63, 0x70, 0x12, 0x18, 0x25, 0x37, 0x2e,
-	0x84, 0x09, 0xe9, 0x62, 0xc9, 0x73, 0x15, 0xd4, 0x41, 0x5d, 0x79, 0xa8, 0x3c, 0x3f, 0x1e, 0xb7,
-	0x8a, 0xf5, 0x67, 0xae, 0x1b, 0x03, 0xe7, 0xa3, 0x24, 0xf6, 0x42, 0x6a, 0x4b, 0x9e, 0x4b, 0x08,
-	0xae, 0x85, 0x4e, 0x00, 0x8a, 0x24, 0xb4, 0x76, 0x86, 0x49, 0x13, 0x57, 0x1d, 0x0a, 0x4a, 0xb5,
-	0x83, 0xba, 0x35, 0x5b, 0xc0, 0xc1, 0xf7, 0xbb, 0xed, 0xb2, 0x27, 0x79, 0xae, 0xae, 0x62, 0xe5,
-	0xd0, 0xcc, 0x06, 0x1e, 0xb1, 0x90, 0x83, 0x0e, 0xb8, 0x61, 0x71, 0x6a, 0x39, 0x33, 0xb0, 0x58,
-	0x0a, 0xe4, 0x37, 0xae, 0x47, 0xbe, 0xb3, 0x80, 0x38, 0xbf, 0xc3, 0x2e, 0x2a, 0xf2, 0x1f, 0x63,
-	0xea, 0x04, 0x30, 0xf6, 0x42, 0x17, 0xe6, 0x99, 0x6f, 0xcd, 0x96, 0x05, 0x73, 0x21, 0x08, 0x71,
-	0x50, 0xc0, 0xd2, 0xdc, 0x5d, 0xb6, 0x33, 0x3c, 0x68, 0x08, 0xfb, 0x62, 0x5e, 0x6f, 0xe3, 0x5f,
-	0x3b, 0x36, 0xa5, 0xfb, 0xc9, 0x03, 0xc2, 0x55, 0x8b, 0x53, 0x72, 0x89, 0x7f, 0xee, 0xff, 0xc5,
-	0x3f, 0xe3, 0x3d, 0x0c, 0xe3, 0xf0, 0x76, 0xf5, 0xe8, 0x8b, 0x66, 0xb9, 0x9a, 0x0c, 0xf1, 0x8f,
-	0x8f, 0x57, 0xed, 0x0f, 0x94, 0xbc, 0xaa, 0x7d, 0xce, 0x97, 0x3b, 0xd4, 0x6f, 0xb7, 0xdb, 0x65,
-	0x0f, 0x0d, 0xcd, 0xa7, 0xb5, 0x86, 0x56, 0x6b, 0x0d, 0xbd, 0xae, 0x35, 0x74, 0xbf, 0xd1, 0x2a,
-	0xab, 0x8d, 0x56, 0x79, 0xd9, 0x68, 0x95, 0xab, 0xf6, 0xf4, 0xda, 0xf1, 0x7d, 0x08, 0x29, 0x98,
-	0xf3, 0x2c, 0xe6, 0x2c, 0xe3, 0x49, 0x3d, 0x0b, 0xf9, 0xf4, 0x2d, 0x00, 0x00, 0xff, 0xff, 0xaf,
-	0xe1, 0x44, 0xa3, 0x66, 0x02, 0x00, 0x00,
+	// 338 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0xca, 0x49, 0xd2, 0x2f,
+	0x2a, 0x28, 0xd6, 0x2f, 0x33, 0xd4, 0x2f, 0xa9, 0xd0, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2,
+	0xcc, 0x49, 0xd2, 0x2b, 0x2a, 0x28, 0xd6, 0x2b, 0x33, 0x94, 0x12, 0x4f, 0xce, 0x2f, 0xce, 0xcd,
+	0x2f, 0xd6, 0xcf, 0x2d, 0x4e, 0x07, 0x29, 0xc9, 0x2d, 0x4e, 0x87, 0xa8, 0x91, 0x92, 0x84, 0x48,
+	0xc4, 0x83, 0x79, 0xfa, 0x10, 0x0e, 0x54, 0x4a, 0x24, 0x3d, 0x3f, 0x3d, 0x1f, 0x22, 0x0e, 0x62,
+	0x41, 0x45, 0x45, 0x91, 0x2c, 0xaa, 0x2c, 0x48, 0x85, 0x2a, 0x56, 0xca, 0xe6, 0x12, 0xf0, 0x2d,
+	0x4e, 0x77, 0x2e, 0x4a, 0x4d, 0x2c, 0x49, 0x0d, 0x2e, 0x29, 0x4d, 0x49, 0xcd, 0x2b, 0x11, 0xd2,
+	0xe0, 0x62, 0xca, 0x4c, 0x91, 0x60, 0x54, 0x60, 0xd4, 0xe0, 0x74, 0x92, 0xb8, 0xb4, 0x45, 0x57,
+	0x04, 0x6a, 0xbc, 0x63, 0x4a, 0x4a, 0x51, 0x6a, 0x71, 0x71, 0x70, 0x49, 0x51, 0x66, 0x5e, 0x7a,
+	0x10, 0x53, 0x66, 0x8a, 0x90, 0x10, 0x17, 0x4b, 0x5e, 0x62, 0x6e, 0xaa, 0x04, 0x13, 0x48, 0x6d,
+	0x10, 0x98, 0x2d, 0x24, 0xc0, 0xc5, 0x9c, 0x98, 0x9e, 0x2a, 0xc1, 0xac, 0xc0, 0xa8, 0xc1, 0x12,
+	0x04, 0x62, 0x5a, 0xb1, 0x37, 0x3d, 0xdf, 0xa0, 0xc5, 0x94, 0x99, 0xa2, 0x24, 0xc5, 0x25, 0x81,
+	0x6e, 0x59, 0x50, 0x6a, 0x71, 0x41, 0x7e, 0x5e, 0x71, 0xaa, 0x92, 0x36, 0xd8, 0x21, 0x2e, 0xa9,
+	0x39, 0xa9, 0x08, 0x87, 0xf0, 0x21, 0x1c, 0x02, 0xb2, 0x0e, 0xdd, 0x20, 0x14, 0xc5, 0x30, 0x83,
+	0x8c, 0x36, 0x31, 0x72, 0x31, 0xfb, 0x16, 0xa7, 0x0b, 0x05, 0x72, 0xf1, 0xa2, 0x7a, 0x4b, 0x5a,
+	0x0f, 0x1e, 0xae, 0x7a, 0xe8, 0xce, 0x90, 0x52, 0xc6, 0x23, 0x09, 0x33, 0x1a, 0x64, 0x24, 0xaa,
+	0x03, 0xd1, 0x8c, 0x44, 0x91, 0x44, 0x37, 0x12, 0xab, 0x6b, 0xa5, 0x58, 0x1b, 0x9e, 0x6f, 0xd0,
+	0x62, 0x74, 0xd2, 0x3f, 0xf1, 0x48, 0x8e, 0xf1, 0xc2, 0x23, 0x39, 0xc6, 0x07, 0x8f, 0xe4, 0x18,
+	0x27, 0x3c, 0x96, 0x63, 0xb8, 0xf0, 0x58, 0x8e, 0xe1, 0xc6, 0x63, 0x39, 0x86, 0x28, 0xd1, 0xe4,
+	0x8c, 0xc4, 0x9c, 0x9c, 0xd4, 0xbc, 0xf4, 0x54, 0xfd, 0x0a, 0x70, 0x04, 0x82, 0x63, 0x2f, 0x89,
+	0x0d, 0x1c, 0x7d, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0x26, 0x06, 0x3f, 0x7e, 0x40, 0x02,
+	0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -279,8 +259,8 @@ const _ = grpc.SupportPackageIsVersion4
 type MsgClient interface {
 	// CreateStudent creates an student
 	CreateStudent(ctx context.Context, in *MsgCreateStudent, opts ...grpc.CallOption) (*MsgCreateStudentResponse, error)
-	// MakeMove submit a move to the specific game
-	MakeMove(ctx context.Context, in *MsgMakeMove, opts ...grpc.CallOption) (*MsgMakeMoveResponse, error)
+	// DeleteStudent deletes an student
+	DeleteStudent(ctx context.Context, in *MsgDeleteStudent, opts ...grpc.CallOption) (*MsgDeleteStudentResponse, error)
 }
 
 type msgClient struct {
@@ -300,9 +280,9 @@ func (c *msgClient) CreateStudent(ctx context.Context, in *MsgCreateStudent, opt
 	return out, nil
 }
 
-func (c *msgClient) MakeMove(ctx context.Context, in *MsgMakeMove, opts ...grpc.CallOption) (*MsgMakeMoveResponse, error) {
-	out := new(MsgMakeMoveResponse)
-	err := c.cc.Invoke(ctx, "/lb.rps.v1.Msg/MakeMove", in, out, opts...)
+func (c *msgClient) DeleteStudent(ctx context.Context, in *MsgDeleteStudent, opts ...grpc.CallOption) (*MsgDeleteStudentResponse, error) {
+	out := new(MsgDeleteStudentResponse)
+	err := c.cc.Invoke(ctx, "/lb.rps.v1.Msg/DeleteStudent", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -313,8 +293,8 @@ func (c *msgClient) MakeMove(ctx context.Context, in *MsgMakeMove, opts ...grpc.
 type MsgServer interface {
 	// CreateStudent creates an student
 	CreateStudent(context.Context, *MsgCreateStudent) (*MsgCreateStudentResponse, error)
-	// MakeMove submit a move to the specific game
-	MakeMove(context.Context, *MsgMakeMove) (*MsgMakeMoveResponse, error)
+	// DeleteStudent deletes an student
+	DeleteStudent(context.Context, *MsgDeleteStudent) (*MsgDeleteStudentResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -324,8 +304,8 @@ type UnimplementedMsgServer struct {
 func (*UnimplementedMsgServer) CreateStudent(ctx context.Context, req *MsgCreateStudent) (*MsgCreateStudentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateStudent not implemented")
 }
-func (*UnimplementedMsgServer) MakeMove(ctx context.Context, req *MsgMakeMove) (*MsgMakeMoveResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method MakeMove not implemented")
+func (*UnimplementedMsgServer) DeleteStudent(ctx context.Context, req *MsgDeleteStudent) (*MsgDeleteStudentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteStudent not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -350,20 +330,20 @@ func _Msg_CreateStudent_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_MakeMove_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgMakeMove)
+func _Msg_DeleteStudent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgDeleteStudent)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MsgServer).MakeMove(ctx, in)
+		return srv.(MsgServer).DeleteStudent(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/lb.rps.v1.Msg/MakeMove",
+		FullMethod: "/lb.rps.v1.Msg/DeleteStudent",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).MakeMove(ctx, req.(*MsgMakeMove))
+		return srv.(MsgServer).DeleteStudent(ctx, req.(*MsgDeleteStudent))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -378,8 +358,8 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Msg_CreateStudent_Handler,
 		},
 		{
-			MethodName: "MakeMove",
-			Handler:    _Msg_MakeMove_Handler,
+			MethodName: "DeleteStudent",
+			Handler:    _Msg_DeleteStudent_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -451,7 +431,7 @@ func (m *MsgCreateStudentResponse) MarshalToSizedBuffer(dAtA []byte) (int, error
 	return len(dAtA) - i, nil
 }
 
-func (m *MsgMakeMove) Marshal() (dAtA []byte, err error) {
+func (m *MsgDeleteStudent) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -461,39 +441,27 @@ func (m *MsgMakeMove) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *MsgMakeMove) MarshalTo(dAtA []byte) (int, error) {
+func (m *MsgDeleteStudent) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *MsgMakeMove) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *MsgDeleteStudent) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Move) > 0 {
-		i -= len(m.Move)
-		copy(dAtA[i:], m.Move)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.Move)))
-		i--
-		dAtA[i] = 0x1a
-	}
-	if m.GameIndex != 0 {
-		i = encodeVarintTx(dAtA, i, uint64(m.GameIndex))
-		i--
-		dAtA[i] = 0x10
-	}
-	if len(m.Player) > 0 {
-		i -= len(m.Player)
-		copy(dAtA[i:], m.Player)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.Player)))
+	if len(m.Id) > 0 {
+		i -= len(m.Id)
+		copy(dAtA[i:], m.Id)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Id)))
 		i--
 		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
 
-func (m *MsgMakeMoveResponse) Marshal() (dAtA []byte, err error) {
+func (m *MsgDeleteStudentResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -503,12 +471,12 @@ func (m *MsgMakeMoveResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *MsgMakeMoveResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *MsgDeleteStudentResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *MsgMakeMoveResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *MsgDeleteStudentResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -556,27 +524,20 @@ func (m *MsgCreateStudentResponse) Size() (n int) {
 	return n
 }
 
-func (m *MsgMakeMove) Size() (n int) {
+func (m *MsgDeleteStudent) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = len(m.Player)
-	if l > 0 {
-		n += 1 + l + sovTx(uint64(l))
-	}
-	if m.GameIndex != 0 {
-		n += 1 + sovTx(uint64(m.GameIndex))
-	}
-	l = len(m.Move)
+	l = len(m.Id)
 	if l > 0 {
 		n += 1 + l + sovTx(uint64(l))
 	}
 	return n
 }
 
-func (m *MsgMakeMoveResponse) Size() (n int) {
+func (m *MsgDeleteStudentResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -774,7 +735,7 @@ func (m *MsgCreateStudentResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *MsgMakeMove) Unmarshal(dAtA []byte) error {
+func (m *MsgDeleteStudent) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -797,15 +758,15 @@ func (m *MsgMakeMove) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: MsgMakeMove: wiretype end group for non-group")
+			return fmt.Errorf("proto: MsgDeleteStudent: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: MsgMakeMove: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: MsgDeleteStudent: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Player", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -833,58 +794,7 @@ func (m *MsgMakeMove) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Player = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field GameIndex", wireType)
-			}
-			m.GameIndex = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.GameIndex |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Move", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthTx
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthTx
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Move = string(dAtA[iNdEx:postIndex])
+			m.Id = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -907,7 +817,7 @@ func (m *MsgMakeMove) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *MsgMakeMoveResponse) Unmarshal(dAtA []byte) error {
+func (m *MsgDeleteStudentResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -930,10 +840,10 @@ func (m *MsgMakeMoveResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: MsgMakeMoveResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: MsgDeleteStudentResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: MsgMakeMoveResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: MsgDeleteStudentResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:
