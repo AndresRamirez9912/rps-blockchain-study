@@ -12,7 +12,7 @@ import (
 )
 
 func (k Keeper) EndBlocker(ctx context.Context) error {
-	defer telemetry.ModuleMeasureSince(types.ModuleName, time.Now(), telemetry.MetricKeyBeginBlocker)
+	defer telemetry.ModuleMeasureSince(types.ModuleName, time.Now(), telemetry.MetricKeyEndBlocker)
 	// Fetch active games whose esxpireaction preiod have ended
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 	ranger := collections.NewPrefixUntilPairRange[uint64, uint64](uint64(sdkCtx.BlockHeight()))
