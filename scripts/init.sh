@@ -19,8 +19,8 @@ $BIN init test --chain-id $CHAIN_ID --default-denom rps
 cp ./genesis.json ~/.rpsd/config/genesis.json
 
 # Assisign funds to the alice and bob accounts
-$BIN genesis add-genesis-account alice 10000000rps --keyring-backend test
-$BIN genesis add-genesis-account bob 1000rps --keyring-backend test
+$BIN genesis add-genesis-account alice 1000000000rps --keyring-backend test
+$BIN genesis add-genesis-account bob 1000000rps --keyring-backend test
 
 # Create the validator (create gentx tx)
 $BIN genesis gentx alice 1000000rps --chain-id $CHAIN_ID

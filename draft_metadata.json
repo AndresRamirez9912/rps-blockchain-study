@@ -1,0 +1,8 @@
+{
+  "title": "upgrade to v1.2.0",
+  "authors": ["Andres"],
+  "summary": "Upgrade the version of the blockchain to the v1.2.0",
+  "details": "Upgrade the version of the blockchain to the v1.2.0",
+  "proposal_forum_url": "andres.com",
+  "vote_option_context": "vote yes to upgrade the blockchain's version"
+}

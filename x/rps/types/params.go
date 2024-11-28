@@ -1,11 +1,11 @@
 package types
 
-const DefaultTtl = 20
+const DefaultTtl = 5
 
 // DefaultParams returns default module parameters.
 func DefaultParams() Params {
 	return Params{
-		Ttl: 20,
+		Ttl: DefaultTtl,
 	}
 }
 

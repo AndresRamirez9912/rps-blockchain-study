@@ -20,10 +20,11 @@ type Keeper struct {
 	authority string
 
 	// state management
-	Schema     collections.Schema
-	Params     collections.Item[types.Params]
-	GameNumber collections.Sequence                // Counter the games
-	Games      collections.Map[uint64, types.Game] // Map [GameId] => Game
+	Schema           collections.Schema
+	Params           collections.Item[types.Params]
+	GameNumber       collections.Sequence                                 // Counter the games
+	Games            collections.Map[uint64, types.Game]                  // Map [GameId] => Game
+	ActiveGamesQueue collections.KeySet[collections.Pair[uint64, uint64]] //ActiveGamesQueue
 }
 
 // NewKeeper creates a new Keeper instance
@@ -36,12 +37,13 @@ func NewKeeper(cdc codec.BinaryCodec, addressCodec address.Codec, storeService s
 
 	sb := collections.NewSchemaBuilder(storeService) // instance used to define the keeper
 	k := Keeper{
-		cdc:          cdc,
-		addressCodec: addressCodec,
-		authority:    authority,
-		Params:       collections.NewItem(sb, types.ParamsKey, "params", codec.CollValue[types.Params](cdc)),
-		GameNumber:   collections.NewSequence(sb, types.GameNumberKey, "game_number"),
-		Games:        collections.NewMap(sb, types.GamesKey, "games", collections.Uint64Key, codec.CollValue[types.Game](cdc)),
+		cdc:              cdc,
+		addressCodec:     addressCodec,
+		authority:        authority,
+		Params:           collections.NewItem(sb, types.ParamsKey, "params", codec.CollValue[types.Params](cdc)),
+		GameNumber:       collections.NewSequence(sb, types.GameNumberKey, "game_number"),
+		Games:            collections.NewMap(sb, types.GamesKey, "games", collections.Uint64Key, codec.CollValue[types.Game](cdc)),
+		ActiveGamesQueue: collections.NewKeySet(sb, types.ActiveGamesQueueKey, "active_games", collections.PairKeyCodec(collections.Uint64Key, collections.Uint64Key)),
 	}
 
 	schema, err := sb.Build() // Build the whole squema

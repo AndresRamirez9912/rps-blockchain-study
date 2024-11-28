@@ -18,13 +18,14 @@ import (
 )
 
 var (
-	_ module.AppModuleBasic = AppModule{} // Module Name and codification settings
-	_ module.HasGenesis     = AppModule{} // Handlers for the genesis handle (export and initial state)
-	_ appmodule.AppModule   = AppModule{} // Register services*, genesis handle and how to interact with consensours mecanism
+	_ module.AppModuleBasic   = AppModule{} // Module Name and codification settings
+	_ module.HasGenesis       = AppModule{} // Handlers for the genesis handle (export and initial state)
+	_ appmodule.AppModule     = AppModule{} // Register services*, genesis handle and how to interact with consensours mecanism
+	_ appmodule.HasEndBlocker = AppModule{}
 )
 
 // ConsensusVersion defines the current module consensus version.
-const ConsensusVersion = 1
+const ConsensusVersion = 2
 
 type AppModule struct {
 	cdc    codec.Codec      // Responsible to handle the codification and decodification
@@ -70,10 +71,11 @@ func (am AppModule) RegisterServices(cfg module.Configurator) {
 	types.RegisterQueryServer(cfg.QueryServer(), rpsKeeper.NewQueryServerImpl(am.keeper))
 
 	// Register in place module state migration migrations
-	// m := keeper.NewMigrator(am.keeper)
-	// if err := cfg.RegisterMigration(checkers.ModuleName, 1, m.Migrate1to2); err != nil {
-	// 	panic(fmt.Sprintf("failed to migrate x/%s from version 1 to 2: %v", checkers.ModuleName, err))
-	// }
+	m := rpsKeeper.NewMigrator(am.keeper)
+	err := cfg.RegisterMigration(types.ModuleName, 1, m.Migrate1to2)
+	if err != nil {
+		panic(fmt.Sprintf("failed to migrate x/%s from version 1 to 2: %v", types.ModuleName, err))
+	}
 }
 
 // ********************* IMPLEMENT HasGenesis INTERFACE ******************
@@ -113,6 +115,13 @@ func (am AppModule) ExportGenesis(ctx sdk.Context, cdc codec.JSONCodec) json.Raw
 	}
 
 	return cdc.MustMarshalJSON(gs)
+}
+
+// ***********************************************************************
+
+// ********************* IMPLEMENT hasEndBlock INTERFACE ******************
+func (am AppModule) EndBlock(ctx context.Context) error {
+	return am.keeper.EndBlocker(ctx)
 }
 
 // ***********************************************************************

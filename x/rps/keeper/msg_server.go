@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strings"
 
+	"cosmossdk.io/collections"
 	"github.com/0xlb/rps-chain/x/rps/rules"
 	"github.com/0xlb/rps-chain/x/rps/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -44,6 +45,12 @@ func (ms msgServer) CreateGame(ctx context.Context, msg *types.MsgCreateGame) (*
 	}
 	// Validate the game
 	err = newGame.Validate()
+	if err != nil {
+		return nil, err
+	}
+
+	//Add game in queue
+	err = ms.k.ActiveGamesQueue.Set(ctx, collections.Join(newGame.ExpirationHeight, newGame.GameNumber))
 	if err != nil {
 		return nil, err
 	}
@@ -149,17 +156,21 @@ func (ms msgServer) ReviewMove(ctx context.Context, msg *types.MsgReviewMove) (*
 
 	// *************** GAME ENDED ************
 	if game.Ended() {
+		err = ms.k.ActiveGamesQueue.Remove(ctx, collections.Join(game.ExpirationHeight, game.GameNumber))
+		if err != nil {
+			return nil, err
+		}
 
+		// *************** EMIT EVENT ************
+		sdkCtx := sdk.UnwrapSDKContext(ctx)
+		sdkCtx.EventManager().EmitTypedEvent(&types.EventEndGame{
+			GameNumber: game.GameNumber,
+			Status:     game.Status,
+		})
+		// ***************************************
 	}
 	// ***************************************
 
-	// *************** EMIT EVENT ************
-	sdkCtx := sdk.UnwrapSDKContext(ctx)
-	sdkCtx.EventManager().EmitTypedEvent(&types.EventEndGame{
-		GameNumber: game.GameNumber,
-		Status:     game.Status,
-	})
-	// ***************************************
 	return &types.MsgReviewMoveResponse{}, nil
 }
 

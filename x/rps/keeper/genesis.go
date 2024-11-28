@@ -3,6 +3,7 @@ package rpsKeeper
 import (
 	"context"
 
+	"cosmossdk.io/collections"
 	"github.com/0xlb/rps-chain/x/rps/types"
 )
 
@@ -18,6 +19,13 @@ func (k *Keeper) InitGenesis(ctx context.Context, data *types.GenesisState) erro
 		err := k.Games.Set(ctx, game.GameNumber, game)
 		if err != nil {
 			return nil
+		}
+
+		if !game.Ended() {
+			err = k.ActiveGamesQueue.Set(ctx, collections.Join(game.ExpirationHeight, game.GameNumber))
+			if err != nil {
+				return err
+			}
 		}
 	}
 
